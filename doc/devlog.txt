@@ -1,0 +1,7 @@
+Team Will Code For Food: Michael Lin (PM), Emily Zhang, Yaru Luo
+SoftDev1 pd 1
+P01 -- ArRESTed Development
+2019-11-15
+
+zhangE -- 2019-11-15 08:15
+Established team Will Code For Food with members Michael Lin, Emily Zhang, Yaru Luo. Created repository with directories.
