@@ -10,7 +10,7 @@ import sqlite3   #enable control of an sqlite database
 DB_FILE="food.db"
 
 #commits the changes after a command
-def exec(cmd):
+def execute(cmd):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     output = c.execute(cmd)
@@ -20,13 +20,11 @@ def exec(cmd):
 #==========================================================
 #creates tables if they do not exist with necessary columns
 def build_db():
-    command = "CREATE TABLE IF NOT EXISTS user_tbl (id INT, username TEXT, password BLOB)"
-    exec(command)    # run SQL statement
+    command = "CREATE TABLE IF NOT EXISTS user_tbl (id PRIMARY KEY, username TEXT, password BLOB)"
+    execute(command)    # run SQL statement
 
     command = "CREATE TABLE IF NOT EXISTS blog_tbl (user_id INT, entryContent TEXT, entryDate TEXT)"
-    exec(command)    # run SQL statement
+    execute(command)    # run SQL statement
 
     command = "CREATE TABLE IF NOT EXISTS blog_tbl (query INT, response TEXTT)"
-    exec(command)    # run SQL statement
-
-    
+    execute(command)    # run SQL statement
