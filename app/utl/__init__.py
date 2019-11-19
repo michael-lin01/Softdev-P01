@@ -20,11 +20,11 @@ def execute(cmd):
 #==========================================================
 #creates tables if they do not exist with necessary columns
 def build_db():
-    command = "CREATE TABLE IF NOT EXISTS user_tbl (id PRIMARY KEY, username TEXT, password BLOB)"
+    command = "CREATE TABLE IF NOT EXISTS user_tbl (id INTEGER PRIMARY KEY, username TEXT, password BLOB)"
     execute(command)    # run SQL statement
 
     command = "CREATE TABLE IF NOT EXISTS blog_tbl (user_id INT, entryContent TEXT, entryDate TEXT)"
     execute(command)    # run SQL statement
 
-    command = "CREATE TABLE IF NOT EXISTS blog_tbl (query INT, response TEXTT)"
+    command = "CREATE TABLE IF NOT EXISTS blog_tbl (query INT, response TEXT)"
     execute(command)    # run SQL statement
