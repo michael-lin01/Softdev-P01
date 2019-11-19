@@ -9,3 +9,6 @@ Established team Will Code For Food with members Michael Lin, Emily Zhang, Yaru 
 luoY -- 2019-11-17 18:30
 Added initial version of design doc.
 Updated README.md file.
+
+linM -- 2019-11-19 8:36
+Updated design doc - database schema and heading
