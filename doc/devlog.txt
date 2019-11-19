@@ -5,3 +5,7 @@ P01 -- ArRESTed Development
 
 zhangE -- 2019-11-15 08:15
 Established team Will Code For Food with members Michael Lin, Emily Zhang, Yaru Luo. Created repository with directories.
+
+luoY -- 2019-11-17 18:30
+Added initial version of design doc.
+Updated README.md file.
