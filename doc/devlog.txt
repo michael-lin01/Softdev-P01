@@ -33,3 +33,6 @@ Routed nav bar and HTML files.
 
 zhangE -- 2019-11-19 23:20
 Added icons and customized css.
+
+zhangE -- 2019-11-20 15:15
+Added bootstrap for login and signup, added basic template for recipe and recipe_search.

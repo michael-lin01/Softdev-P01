@@ -2,16 +2,16 @@
 
 {% block content %}
 
-    <form method="post">
+    <form class="form-group" method="post">
         <label for="username">Username:</label>
-        <input id="username" name="username" type="text"><br><br>
+        <input class="form-control-sm" id="username" name="username" type="text"><br><br>
 
         <label for="password">Password:</label>
-        <input id="password" name="password" type="password"><br><br>
+        <input class="form-control-sm" id="password" name="password" type="password"><br><br>
 
         <label for="password_repeat">Repeat Password:</label>
-        <input id="password_repeat" name="password_repeat" type="password"><br><br>
+        <input class="form-control-sm" id="password_repeat" name="password_repeat" type="password"><br><br>
 
-        <input type="submit" value="Sign Up!">
+        <input class="btn-sm" type="submit" value="Sign Up!">
     </form>
 {% endblock content %}
