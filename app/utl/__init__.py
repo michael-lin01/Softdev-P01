@@ -10,10 +10,10 @@ import sqlite3   #enable control of an sqlite database
 DB_FILE="food.db"
 
 #commits the changes after a command
-def execute(cmd):
-    db = sqlite3.connect(DB_FILE)
+def execute( cmd):
+    db = sqlite3.connect( DB_FILE)
     c = db.cursor()
-    output = c.execute(cmd)
+    output = c.execute( cmd)
     db.commit()
     return output
 
