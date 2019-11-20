@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form method="post">
+        <label for="username">Username:</label>
+        <input id="username" name="username" type="text"><br><br>
+
+        <label for="password">Password:</label>
+        <input id="password" name="password" type="password"><br><br>
+
+        <label for="password_repeat">Repeat Password:</label>
+        <input id="password_repeat" name="password_repeat" type="password"><br><br>
+
+        <input type="submit" value="Sign Up!">
+    </form>
+{% endblock content %}

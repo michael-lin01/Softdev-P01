@@ -13,7 +13,7 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
                 crossorigin="anonymous"></script>
-        <title></title>
+        <title>{{ title }}</title>
     </head>
     <body>
         <div class="container">
@@ -21,9 +21,9 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">MYplatE</a>
                 </div>
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Recipe Book</a>
@@ -36,10 +36,25 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li class = "nav-item">
+                        <a class="nav-link" href="{{ url_for('signup') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                    </li>
+                    <li class = "nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                    </li>
+                    <li class = "nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                    </li>
                 </ul>
             </nav>
+        </div>
+        <br>
+        <div class = "container">
+            {% for category, message in get_flashed_messages(with_categories = true) %}
+                <p style = 'color: {{ category }}'>{{ message }}</p>
+            {% endfor %}
+
+            {% block content %} {% endblock content %}
         </div>
     </body>
 </html>
