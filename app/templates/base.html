@@ -15,14 +15,15 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-        </style>
+        <script src="https://kit.fontawesome.com/0691185925.js" crossorigin="anonymous"></script>
+
         <title>{{ title }}</title>
     </head>
     <body>
         <div class="container">
             <nav class="navbar navbar-expand-sm bg-dark">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">MYplatE</a>
+                    <a class="navbar-brand" href="#"><i class="fas fa-utensils"></i>MYplatE<i class="fas fa-circle"></i></a>
                 </div>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
@@ -38,7 +39,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                 Food Diary
                             </a>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu bg-dark">
                                 <a class="dropdown-item" href="#">My Food Diary</a>
                                 <a class="dropdown-item" href="#">Nutrition Data</a>
                             </div>
@@ -46,8 +47,8 @@
                 </ul>
                 <div class="nav navbar-nav ml-auto">
                     {% if current_user is none %}
-                        <li><a href="{{ url_for('signup') }}"> <button class="btn btn-link">Sign up</button></a></li>
-                        <li><a href="{{ url_for('login') }}"> <button class="btn btn-link">Login</button></a></li>
+                        <li><a href="{{ url_for('signup') }}"> <button class="btn btn-link"><i class="fas fa-user-plus"></i>Sign up</button></a></li>
+                        <li><a href="{{ url_for('login') }}"> <button class="btn btn-link"><i class="fas fa-sign-in-alt"></i>Login</button></a></li>
                     {% else %}
                         <li><a href="{{ url_for('logout') }}"> <button class="btn btn-link">Log out</button></a></li>
                     {% endif %}
@@ -67,6 +68,12 @@
             {% endwith %}
 
             {% block content %} {% endblock content %}
+        </div>
+
+        <div class="fixed-bottom">
+            <p class="copyright">
+                &copy; WillCodeForFood 2019
+            </p>
         </div>
     </body>
 </html>
