@@ -17,7 +17,7 @@ def index():
 
 @app.route( '/recipe')
 def recipe():
-    return render_template( 'recipes.html')
+    return render_template( 'recipe.html')
 
 @app.route( '/recipeSearch')
 def recipeSearch():
