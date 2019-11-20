@@ -2,7 +2,7 @@
     color:rgb(167, 164, 164);
 }
 
-.btn:hover, .btn:active, .btn:focus {
+.btn:hover, .btn:active, .btn:focus, .nav-link:hover, .nav-link:active, .nav-link:focus {
   color: yellow; 
   background-color: grey; 
   border-color: #494F57;
