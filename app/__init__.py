@@ -39,6 +39,18 @@ def query():
             )
         )
 
+@app.route( '/foodDiary')
+def foodDiary():
+    if ( "userid" not in session):
+      flash('You must log in to access this page', 'red')
+      return redirect( url_for( 'login'))
+    return render_template( 'food_diary.html')
+
+@app.route( '/newEntry')
+def newEntry():
+    username = tester.getUserInfo( session[ 'userid'])[ 0]
+    return render_template( 'new_entry.html',
+                            username = username)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -105,3 +117,11 @@ def logout():
     logout_user()
     flash('Successfully logged out!', 'success')
     return redirect('/')
+
+#==========================user tests===========================
+
+#addUser( "Michael","pls")
+#addUser("Emily", "actually")
+#addUser("Yaru","work")
+
+#==========================diary functions===========================
