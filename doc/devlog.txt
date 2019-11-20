@@ -27,3 +27,6 @@ Added css and bootstrap for nav bar.
 luoY -- 2019-11-19 21:11
 Routed the recipe page.
 Implemented search function for recipeSearch.
+
+luoY -- 2019-11-19 21:41
+Routed nav bar and HTML files.
