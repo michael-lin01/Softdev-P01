@@ -30,3 +30,6 @@ Implemented search function for recipeSearch.
 
 luoY -- 2019-11-19 21:41
 Routed nav bar and HTML files.
+
+zhangE -- 2019-11-19 23:20
+Added icons and customized css.

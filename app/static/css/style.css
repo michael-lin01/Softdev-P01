@@ -1,5 +1,5 @@
-.nav-link {
-    color:rgb(167, 164, 164);
+.nav-link, .dropdown-item {
+    color:rgb(175, 175, 175);
 }
 
 .btn-link {
@@ -7,23 +7,19 @@
   border-color: rgb(252, 217, 80);
 }
 
-.btn:hover, .btn:active, .btn:focus{
-  background-color: rgb(167, 164, 164); 
+.btn:hover, .btn:active, .btn:focus {
+  background-color: rgb(175, 175, 175); 
   border-color: white;
   color:white;
 }
 
-.nav-link:hover, .nav-link:active, .nav-link:focus {
+.nav-link:hover, .nav-link:active, .nav-link:focus, .dropdown-item:hover, .dropdown-item:active, .dropdown-item:focus {
   color: white; 
-  background-color: rgb(167, 164, 164); 
+  background-color: rgb(175, 175, 175); 
 }
 
 .navbar-brand, .navbar-brand:hover, .navbar-brand:active, .navbar-brand:focus {
-  color: white;
-}
-
-.dropdown-item {
-  color: rgb(167, 164, 164);
+  color: rgb(252, 217, 80);
 }
 
 .copyright{
