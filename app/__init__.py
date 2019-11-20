@@ -14,6 +14,33 @@ app.secret_key = os.urandom(64)
 def index():
     return render_template("index.html", title = "Home", current_user = current_user())
 
+
+@app.route( '/recipe')
+def recipe():
+    return render_template( 'recipes.html')
+
+@app.route( '/recipeSearch')
+def recipeSearch():
+    results = [] # when user first visits search page, no results are displayed
+    if( request.args):
+        if ( 'query' in request.args):
+            query = request.args[ 'query'] # searhc keyword
+            results = tester.findRecipe( query) # results of search
+            #print( results)
+    return render_template( 'recipe_search.html')
+    
+@app.route( '/query', methods = [ 'POST'])
+def query():
+    query = request.form[ 'keyword']
+    # display results on search page
+    return redirect(
+        url_for(
+            'search', query = query
+            )
+        )
+
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # check if form was submitted

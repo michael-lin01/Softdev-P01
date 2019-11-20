@@ -10,6 +10,9 @@ luoY -- 2019-11-17 18:30
 Added initial version of design doc.
 Updated README.md file.
 
+luoY -- 2019-11-8:30
+Created basic database builder file.
+
 linM -- 2019-11-19 8:36
 Updated design doc - database schema and heading
 
@@ -20,3 +23,7 @@ Changed navbar to show proper buttons depending on if logged in or not
 
 zhangE -- 2019-11-19 21:05
 Added css and bootstrap for nav bar.
+
+luoY -- 2019-11-19 21:11
+Routed the recipe page.
+Implemented search function for recipeSearch.
