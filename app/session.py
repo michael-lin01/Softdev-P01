@@ -17,6 +17,6 @@ def current_user():
 def login_user(usr):
     session['user_id'] = usr.id
 
-# clear session (logout user)
+# clear session
 def logout_user():
     session.clear()

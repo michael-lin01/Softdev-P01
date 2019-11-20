@@ -32,5 +32,4 @@ def build_db():
 
     command = "CREATE TABLE IF NOT EXISTS cache (query INT, response TEXT)"
     execute(command)    # run SQL statement
-
     
