@@ -1,0 +1,9 @@
+.nav-link {
+    color:rgb(167, 164, 164);
+}
+
+.btn:hover, .btn:active, .btn:focus {
+  color: yellow; 
+  background-color: grey; 
+  border-color: #494F57;
+}
