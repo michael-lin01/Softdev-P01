@@ -16,7 +16,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
         </style>
-        <title></title>
+        <title>{{ title }}</title>
     </head>
     <body>
         <div class="container">
@@ -45,8 +45,12 @@
                         </li>
                 </ul>
                 <div class="nav navbar-nav ml-auto">
-                    <li><a href="#"> <button class="btn btn-link">Sign up</button></a></li>
-                    <li><a href="#"> <button class="btn btn-link">Login</button></a></li>
+                    {% if current_user is none %}
+                        <li><a href="{{ url_for('signup') }}"> <button class="btn btn-link">Sign up</button></a></li>
+                        <li><a href="{{ url_for('login') }}"> <button class="btn btn-link">Login</button></a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('logout') }}"> <button class="btn btn-link">Log out</button></a></li>
+                    {% endif %}
                 </div>
             </nav>
         </div>

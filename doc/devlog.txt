@@ -16,6 +16,7 @@ Updated design doc - database schema and heading
 linM -- 2019-11-19 20:54
 Implemented login system
 Created User class to make database interactions easier
+Changed navbar to show proper buttons depending on if logged in or not
 
 zhangE -- 2019-11-19 21:05
 Added css and bootstrap for nav bar.

@@ -12,7 +12,7 @@ app.secret_key = os.urandom(64)
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html", current_user = current_user())
+    return render_template("index.html", title = "Home", current_user = current_user())
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -45,7 +45,7 @@ def login():
             message = 'Successfully logged in'
             flash(message, 'green')
             return redirect('/')
-    return render_template("login.html", title = "Log In")
+    return render_template("login.html", title = "Log In", current_user = current_user())
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -74,7 +74,7 @@ def signup():
         else:
             User.new_user(username, password)
             return redirect('login')
-    return render_template('signup.html', title = 'Sign Up')
+    return render_template('signup.html', title = 'Sign Up', current_user = current_user())
 
 # logout user
 @app.route('/logout')
