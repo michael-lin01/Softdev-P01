@@ -24,9 +24,9 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">MYplatE</a>
                 </div>
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Recipe Book</a>
@@ -49,6 +49,14 @@
                     <li><a href="#"> <button class="btn btn-link">Login</button></a></li>
                 </div>
             </nav>
+        </div>
+        <br>
+        <div class = "container">
+            {% for category, message in get_flashed_messages(with_categories = true) %}
+                <p style = 'color: {{ category }}'>{{ message }}</p>
+            {% endfor %}
+
+            {% block content %} {% endblock content %}
         </div>
     </body>
 </html>

@@ -12,3 +12,7 @@ Updated README.md file.
 
 linM -- 2019-11-19 8:36
 Updated design doc - database schema and heading
+
+linM -- 2019-11-19 20:54
+Implemented login system
+Created User class to make database interactions easier
