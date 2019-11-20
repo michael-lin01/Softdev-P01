@@ -32,18 +32,16 @@ def login():
         auth_valid = True
 
         if to_login is None: # if a user with that username doesn't exist
-            flash('That username does not belong to a registered account!','red')
+            flash('That username does not belong to a registered account!','danger')
             auth_valid = False
         elif to_login.password != password: # if they typed in the wrong password
-            flash('Incorrect password!','red')
+            flash('Incorrect password!','danger')
             auth_valid = False
 
-        if not valid or not auth_valid:
-            flash('Please fix the above error(s) before submitting the form again!', 'red')
-        else:
+        if valid and auth_valid:
             login_user(to_login) # from session.py
             message = 'Successfully logged in'
-            flash(message, 'green')
+            flash(message, 'success')
             return redirect('/')
     return render_template("login.html", title = "Log In", current_user = current_user())
 
@@ -62,16 +60,14 @@ def signup():
         valid = True
 
         if not password == password_repeat: # if they typed in a different password in repeat
-            flash('Passwords do not match!', 'red')
+            flash('Passwords do not match!', 'danger')
             valid = False
 
         if not User.username_avaliable(username): # checks database if username already exists
-            flash('Username already taken!', 'red')
+            flash('Username already taken!', 'danger')
             valid = False
 
-        if not valid:
-            flash('Please fix the above error(s) before submitting the form again!', 'red')
-        else:
+        if valid:
             User.new_user(username, password)
             return redirect('login')
     return render_template('signup.html', title = 'Sign Up', current_user = current_user())
@@ -80,5 +76,5 @@ def signup():
 @app.route('/logout')
 def logout():
     logout_user()
-    flash('Successfully logged out!', 'green')
+    flash('Successfully logged out!', 'success')
     return redirect('/')

@@ -56,9 +56,15 @@
         </div>
         <br>
         <div class = "container">
-            {% for category, message in get_flashed_messages(with_categories = true) %}
-                <p style = 'color: {{ category }}'>{{ message }}</p>
-            {% endfor %}
+            {% with messages = get_flashed_messages(with_categories = true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class = "alert alert-{{ category }}" role = "alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
 
             {% block content %} {% endblock content %}
         </div>
