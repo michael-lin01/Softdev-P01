@@ -17,8 +17,8 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # check if form was submitted
-    if 'username' in request.form.keys() and \
-            'password' in request.form.keys():
+    form = request.form.keys()
+    if 'username' in form and 'password' in form:
         # read the data from the form
         # we can use [] now since we know the key exists
         username = request.form['username']
@@ -49,9 +49,9 @@ def login():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    if 'username' in request.form.keys() and \
-            'password' in request.form.keys() and \
-            'password_repeat' in request.form.keys():
+    # check if form was submitted
+    form = request.form.keys()
+    if 'username' in form and 'password' in form and 'password_repeat' in form:
 
         # read the data from the form
         username = request.form['username']
