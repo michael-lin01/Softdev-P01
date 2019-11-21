@@ -19,7 +19,7 @@ def index():
 def recipe():
     return render_template( 'recipe.html')
 
-@app.route( '/recipeSearch')
+@app.route( '/recipe_search')
 def recipeSearch():
     results = [] # when user first visits search page, no results are displayed
     if( request.args):
@@ -28,6 +28,10 @@ def recipeSearch():
             results = tester.findRecipe( query) # results of search
             #print( results)
     return render_template( 'recipe_search.html')
+
+@app.route('/restaurant')
+def restaurant():
+    return render_template('restaurant.html')
     
 @app.route( '/query', methods = [ 'POST'])
 def query():
@@ -39,14 +43,14 @@ def query():
             )
         )
 
-@app.route( '/foodDiary')
+@app.route( '/food_diary')
 def foodDiary():
     if ( "userid" not in session):
       flash('You must log in to access this page', 'red')
       return redirect( url_for( 'login'))
     return render_template( 'food_diary.html')
 
-@app.route( '/newEntry')
+@app.route( '/new_entry')
 def newEntry():
     username = tester.getUserInfo( session[ 'userid'])[ 0]
     return render_template( 'new_entry.html',
