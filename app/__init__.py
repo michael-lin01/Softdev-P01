@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, flash, redirect, session
+from flask import Flask, render_template, request, flash, redirect, session, url_for
 
 from app.utl.user import User
 from app.session import *
@@ -45,8 +45,8 @@ def query():
 
 @app.route( '/food_diary')
 def foodDiary():
-    if ( "userid" not in session):
-      flash('You must log in to access this page', 'red')
+    if current_user() == None:
+      flash('You must log in to access this page', 'warning')
       return redirect( url_for( 'login'))
     return render_template( 'food_diary.html')
 
@@ -85,7 +85,7 @@ def login():
             login_user(to_login) # from session.py
             message = 'Successfully logged in'
             flash(message, 'success')
-            return redirect('/')
+            return redirect('/foodDiary')
     return render_template("login.html", title = "Log In", current_user = current_user())
 
 @app.route('/signup', methods=['GET', 'POST'])
