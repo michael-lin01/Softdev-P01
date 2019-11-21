@@ -40,6 +40,12 @@ Created dummy HTML files.
 zhangE -- 2019-11-20 15:15
 Added bootstrap for login and signup, added basic template for recipe and recipe_search.
 
+linM -- 2019-11-20 18:33
+Things we will do:
+    - Communicate with each other more so that everyone understands how each other's code works 
+    - Ask for help when we need it: you can't be expected to know how to do everything by yourself
+    - Maintain a friendly programming environment
+
 linM -- 2019-11-20 19:54
 Added requirements file
 Added restaurant template
