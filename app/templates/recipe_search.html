@@ -5,4 +5,8 @@
         <input class="form-control-sm" id="query" name="query" type="text"><br><br>
         <input class="btn-small" type="submit" value="Search"> <br><br>
     </form>
+
+    {% if response %}
+      {{ response }}
+    {% endif %}
 {% endblock content %}

@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, flash, redirect, session, url
 
 from app.utl.user import User
 from app.session import *
+import urllib.request, json
 
 app = Flask(__name__)
 
@@ -17,22 +18,28 @@ def index():
 
 @app.route( '/recipe')
 def recipe():
-    return render_template( 'recipe.html')
+    return render_template('recipe.html')
 
-@app.route( '/recipe_search')
+@app.route( '/recipe_search', methods=['GET', 'POST'])
 def recipeSearch():
     results = [] # when user first visits search page, no results are displayed
-    if( request.args):
-        if ( 'query' in request.args):
-            query = request.args[ 'query'] # searhc keyword
-            results = tester.findRecipe( query) # results of search
+    # response = None
+    # if (request.form):
+    #     request = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
+    #     u = urllib.request.urlopen(request)
+    #     response = u.read()
+    #     data = json.loads(response)
+    # if( request.args):
+        # if ( 'query' in request.args):
+            # query = request.args[ 'query'] # searhc keyword
+            # results = tester.findRecipe( query) # results of search
             #print( results)
-    return render_template( 'recipe_search.html')
+    return render_template( 'recipe_search.html', response = response)
 
 @app.route('/restaurant')
 def restaurant():
     return render_template('restaurant.html')
-    
+
 @app.route( '/query', methods = [ 'POST'])
 def query():
     query = request.form[ 'keyword']
