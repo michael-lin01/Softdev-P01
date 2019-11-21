@@ -22,19 +22,13 @@ def recipe():
 
 @app.route( '/recipe_search', methods=['GET', 'POST'])
 def recipeSearch():
-    results = [] # when user first visits search page, no results are displayed
-    # response = None
-    # if (request.form):
-    #     request = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
-    #     u = urllib.request.urlopen(request)
-    #     response = u.read()
-    #     data = json.loads(response)
-    # if( request.args):
-        # if ( 'query' in request.args):
-            # query = request.args[ 'query'] # searhc keyword
-            # results = tester.findRecipe( query) # results of search
-            #print( results)
-    return render_template( 'recipe_search.html', response = response)
+    data = None
+    if (request.form):
+        r = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
+        u = urllib.request.urlopen(r)
+        response = u.read()
+        data = json.loads(response)['results']
+    return render_template( 'recipe_search.html', data = data)
 
 @app.route('/restaurant')
 def restaurant():
@@ -92,7 +86,7 @@ def login():
             login_user(to_login) # from session.py
             message = 'Successfully logged in'
             flash(message, 'success')
-            return redirect('/foodDiary')
+            return redirect(url_for('foodDiary'))
     return render_template("login.html", title = "Log In", current_user = current_user())
 
 @app.route('/signup', methods=['GET', 'POST'])
