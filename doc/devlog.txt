@@ -50,3 +50,8 @@ linM -- 2019-11-20 19:54
 Added requirements file
 Added restaurant template
 Fixed button redirect for recipes
+
+linM -- 2019-11-21 19:00
+Added recipe search functionality
+Fixed some templates
+Added hyperlinks to APIs in readme
