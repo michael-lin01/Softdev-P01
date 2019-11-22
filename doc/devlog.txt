@@ -55,3 +55,6 @@ linM -- 2019-11-21 19:00
 Added recipe search functionality
 Fixed some templates
 Added hyperlinks to APIs in readme
+
+luoY -- 2019--11-21 21:37
+Coded the addEntry function for the food diary. I think it works. Hopefully.
