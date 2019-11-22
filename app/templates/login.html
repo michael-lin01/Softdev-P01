@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<<<<<<< HEAD
     <form method="post"></form>
         <div class="form-group">
                 <label for="username">Username:</label>
@@ -12,5 +13,15 @@
             <input id="password" name="password" type="password" class="form-control"><br><br>
         </div>
             <input type="submit" value="Log In" class="btn btn-primary"> <br><br>
+=======
+    <form class="form-group" method="post">
+        <label for="username">Username:</label>
+        <input class="form-control-sm" id="username" name="username" type="text"><br><br>
+
+        <label for="password">Password:</label>
+        <input class="form-control-sm" id="password" name="password" type="password"><br><br>
+
+        <input class="btn-sm" type="submit" value="Log In!"> <br><br>
+>>>>>>> 6b89fbc19a493de6fed8a2823d090ee2f3849466
     </form>
 {% endblock content %}

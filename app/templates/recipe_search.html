@@ -1,7 +1,15 @@
 {% extends "base.html" %}
-    <form method="post">
-        <label for="">Find a recipe: </label>
-        <input id="" name="" type="text"><br><br>
-    
-        <input type="submit" value="Search"> <br><br>
+{% block content %}
+    <form class="form-group" method="post">
+        <label class="form-control-sm" for="query">Find a recipe: </label>
+        <input class="form-control-sm" id="query" name="query" type="text"><br><br>
+        <input class="btn-small" type="submit" value="Search"> <br><br>
     </form>
+
+    {% if data %}
+      {% for result in data %}
+        <img src = "{{ result['thumbnail'] }}" class="img-thumbnail"> <br>
+        <a href = '{{ result["href"] }}'> {{ result['title'] }} </a> <br><br>
+      {% endfor %}
+    {% endif %}
+{% endblock content %}

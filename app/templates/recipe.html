@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<button type="button" class="btn" href="/recipe_search">Recipes</button>
-{% endblock %}
+
+<a href="{{ url_for('recipeSearch') }}"><button class="btn-sm btn-link" type="button" >Recipes</button></a>
+{% endblock content%}

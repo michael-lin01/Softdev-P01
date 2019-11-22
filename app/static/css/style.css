@@ -1,5 +1,5 @@
-.nav-link, .dropdown-item {
-    color:rgb(175, 175, 175);
+.nav-link, .dropdown-item{
+    color:rgb(167, 164, 164);
 }
 
 .btn-link {
@@ -8,14 +8,14 @@
 }
 
 .btn:hover, .btn:active, .btn:focus {
-  background-color: rgb(175, 175, 175); 
+  background-color: rgb(167, 164, 164); 
   border-color: white;
   color:white;
 }
 
 .nav-link:hover, .nav-link:active, .nav-link:focus, .dropdown-item:hover, .dropdown-item:active, .dropdown-item:focus {
   color: white; 
-  background-color: rgb(175, 175, 175); 
+  background-color: rgb(167, 164, 164); 
 }
 
 .navbar-brand, .navbar-brand:hover, .navbar-brand:active, .navbar-brand:focus {
