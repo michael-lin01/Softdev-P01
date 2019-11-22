@@ -24,9 +24,9 @@ def recipe():
 def recipeSearch():
     data = None
     if (request.form):
-        r = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
-        u = urllib.request.urlopen(r)
-        response = u.read()
+        call = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
+        url = urllib.request.urlopen( call)
+        response = url.read()
         data = json.loads(response)['results']
     return render_template( 'recipe_search.html', title = "Recipe Search", data = data)
 
