@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, flash, redirect, session
+from flask import Flask, render_template, request, flash, redirect, session, url_for
 
 from app.utl.user import User
 from app.session import *
@@ -118,10 +118,3 @@ def logout():
     flash('Successfully logged out!', 'success')
     return redirect('/')
 
-#==========================user tests===========================
-
-#addUser( "Michael","pls")
-#addUser("Emily", "actually")
-#addUser("Yaru","work")
-
-#==========================diary functions===========================
