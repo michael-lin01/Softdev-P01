@@ -11,4 +11,11 @@
         <br><br>
         <input class="btn-small" type="submit" value="Search"> <br><br>
     </form>
+
+    {% if data %}
+      {% for result in data %}
+        <img src = "{{ result['thumbnail'] }}" class="img-thumbnail"> <br>
+        <a href = '{{ result["href"] }}'> {{ result['title'] }} </a> <br><br>
+      {% endfor %}
+    {% endif %}
 {% endblock content %}

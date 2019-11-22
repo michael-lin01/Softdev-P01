@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, flash, redirect, session, url
 
 from app.utl.user import User
 from app.session import *
+import urllib.request, json
 
 app = Flask(__name__)
 
@@ -17,22 +18,22 @@ def index():
 
 @app.route( '/recipe')
 def recipe():
-    return render_template( 'recipe.html')
+    return render_template('recipe.html', title = 'Recipe')
 
-@app.route( '/recipe_search')
+@app.route( '/recipe_search', methods=['GET', 'POST'])
 def recipeSearch():
-    results = [] # when user first visits search page, no results are displayed
-    if( request.args):
-        if ( 'query' in request.args):
-            query = request.args[ 'query'] # searhc keyword
-            results = tester.findRecipe( query) # results of search
-            #print( results)
-    return render_template( 'recipe_search.html')
+    data = None
+    if (request.form):
+        r = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
+        u = urllib.request.urlopen(r)
+        response = u.read()
+        data = json.loads(response)['results']
+    return render_template( 'recipe_search.html', title = "Recipe Search", data = data)
 
 @app.route('/restaurant')
 def restaurant():
-    return render_template('restaurant.html')
-    
+    return render_template('restaurant.html', title = "Restaurant")
+
 @app.route( '/query', methods = [ 'POST'])
 def query():
     query = request.form[ 'keyword']
@@ -48,7 +49,7 @@ def foodDiary():
     if current_user() == None:
       flash('You must log in to access this page', 'warning')
       return redirect( url_for( 'login'))
-    return render_template( 'food_diary.html')
+    return render_template( 'food_diary.html', title = "Food Diary")
 
 @app.route( '/new_entry')
 def newEntry():
@@ -85,7 +86,7 @@ def login():
             login_user(to_login) # from session.py
             message = 'Successfully logged in'
             flash(message, 'success')
-            return redirect('/foodDiary')
+            return redirect(url_for('foodDiary'))
     return render_template("login.html", title = "Log In", current_user = current_user())
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -122,10 +123,3 @@ def logout():
     flash('Successfully logged out!', 'success')
     return redirect('/')
 
-#==========================user tests===========================
-
-#addUser( "Michael","pls")
-#addUser("Emily", "actually")
-#addUser("Yaru","work")
-
-#==========================diary functions===========================
