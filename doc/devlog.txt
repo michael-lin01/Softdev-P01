@@ -50,3 +50,6 @@ linM -- 2019-11-20 19:54
 Added requirements file
 Added restaurant template
 Fixed button redirect for recipes
+
+zhangE -- 2019-11-21 23:53
+Added dropdown menu for recipes.

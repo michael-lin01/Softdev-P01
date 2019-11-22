@@ -7,6 +7,13 @@
   border-color: rgb(252, 217, 80);
 }
 
+.rsbtn {
+  position:relative;
+  display:block;
+  background-position:center center;
+  background-size:100%;
+}
+
 .btn:hover, .btn:active, .btn:focus {
   background-color: rgb(167, 164, 164); 
   border-color: white;
@@ -25,4 +32,22 @@
 .copyright{
   text-align: center;
   color: grey;
+}
+.bg { 
+  /* The image used */
+  background-image: url("../img/recipepic.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  filter: brightness(50%);
+}
+
+body, html {
+  height: 100%;
 }
