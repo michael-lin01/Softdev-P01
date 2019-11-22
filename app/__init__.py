@@ -34,16 +34,6 @@ def recipeSearch():
 def restaurant():
     return render_template('restaurant.html', title = "Restaurant")
 
-@app.route( '/query', methods = [ 'POST'])
-def query():
-    query = request.form[ 'keyword']
-    # display results on search page
-    return redirect(
-        url_for(
-            'search', query = query
-            )
-        )
-
 @app.route( '/food_diary')
 def foodDiary():
     if current_user() == None:
@@ -123,3 +113,4 @@ def logout():
     flash('Successfully logged out!', 'success')
     return redirect('/')
 
+# food data central: eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl
