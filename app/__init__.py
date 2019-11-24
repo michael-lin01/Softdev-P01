@@ -24,25 +24,15 @@ def recipe():
 def recipeSearch():
     data = None
     if (request.form):
-        r = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
-        u = urllib.request.urlopen(r)
-        response = u.read()
+        call = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
+        url = urllib.request.urlopen( call)
+        response = url.read()
         data = json.loads(response)['results']
     return render_template( 'recipe_search.html', title = "Recipe Search", data = data)
 
 @app.route('/restaurant')
 def restaurant():
     return render_template('restaurant.html', title = "Restaurant")
-
-@app.route( '/query', methods = [ 'POST'])
-def query():
-    query = request.form[ 'keyword']
-    # display results on search page
-    return redirect(
-        url_for(
-            'search', query = query
-            )
-        )
 
 @app.route( '/food_diary')
 def foodDiary():
@@ -123,3 +113,4 @@ def logout():
     flash('Successfully logged out!', 'success')
     return redirect('/')
 
+# food data central: eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl

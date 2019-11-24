@@ -57,7 +57,14 @@ Fixed some templates
 Added hyperlinks to APIs in readme
 
 luoY -- 2019--11-21 21:37
-Coded the addEntry function for the food diary. I think it works. Hopefully.
+Added the addEntry function for the food diary. I think it works. Hopefully.
 
 zhangE -- 2019-11-21 23:53
 Added dropdown menu for recipes, background image in recipes in progress.
+
+luoY -- 2019-11-22 8:17
+Prettied the recipe search.
+Made a newEntry html file w dummy forms.
+
+zhangE -- 2019-11-24 00:30
+Added button overlay for image in recipes.
