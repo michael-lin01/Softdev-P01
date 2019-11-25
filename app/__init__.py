@@ -10,6 +10,11 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(64)
 
+# makes session permanent
+@app.before_request
+def before_request():
+    session.permanent = True
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -57,11 +62,11 @@ def foodDiary():
       return redirect( url_for( 'login'))
     return render_template( 'food_diary.html', title = "Food Diary")
 
-@app.route( '/new_entry')
+@app.route( '/new_entry', methods=['GET', 'POST'])
 def newEntry():
-    username = tester.getUserInfo( session[ 'userid'])[ 0]
+    print(request.form)
     return render_template( 'new_entry.html'
-                            , username = username)
+                            , user = current_user())
 
 
 @app.route('/login', methods=['GET', 'POST'])

@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-  <input class="form-control" type="text" placeholder='Date (required)'>
-  <input class="form-control" type="text" placeholder='Breakfast'>
-  <input class="form-control" type="text" placeholder='Lunch'>
-  <input class="form-control" type="text" placeholder='Dinner'>
-  <input class="form-control" type="text" placeholder='Snacks'>
-  <input class="form-control" type="text" placeholder='Restaurant'>
+<form class="form-group" method="post">
+  <input class="form-control" id = date type="text" placeholder='Date (required)'>
+  <input class="form-control" id = breakfast type="text" placeholder='Breakfast'>
+  <input class="form-control" id = lunch type="text" placeholder='Lunch'>
+  <input class="form-control" id = dinner type="text" placeholder='Dinner'>
+  <input class="form-control" id = snacks type="text" placeholder='Snacks'>
+  <input class="form-control" id = restaurant type="text" placeholder='Restaurant'>
+  <br>
+  <input class="btn-sm btn-warning" type="submit" value="Submit">
+</form>
+
+
 {% endblock content %}
