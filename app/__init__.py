@@ -24,25 +24,31 @@ def recipe():
 def recipeSearch():
     data = None
     if (request.form):
-        call = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
-        url = urllib.request.urlopen( call)
-        response = url.read()
+        url = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
+        req = urllib.request.urlopen(url)
+        response = req.read()
         data = json.loads(response)['results']
     return render_template( 'recipe_search.html', title = "Recipe Search", data = data)
+
+@app.route( '/fooddata', methods=['GET', 'POST'])
+def fooddata():
+    data = None
+    if (request.form):
+        query = request.form['query']
+        # headers = {
+        #     "generalSearchInput": query
+        # }
+        url = "https://api.nal.usda.gov/fdc/v1/340946?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl"
+        req = urllib.request.Request(url)
+        data = json.loads(urllib.request.urlopen(req).read())
+        print(data)
+        #response = call.read()
+        #data = json.loads(response)['results']
+    return render_template('food_data.html', title = 'Food Data', data = data)
 
 @app.route('/restaurant')
 def restaurant():
     return render_template('restaurant.html', title = "Restaurant")
-
-@app.route( '/query', methods = [ 'POST'])
-def query():
-    query = request.form[ 'keyword']
-    # display results on search page
-    return redirect(
-        url_for(
-            'search', query = query
-            )
-        )
 
 @app.route( '/food_diary')
 def foodDiary():
@@ -123,3 +129,4 @@ def logout():
     flash('Successfully logged out!', 'success')
     return redirect('/')
 
+# food data central: eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl

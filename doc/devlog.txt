@@ -65,3 +65,6 @@ Added dropdown menu for recipes, background image in recipes in progress.
 luoY -- 2019-11-22 8:17
 Prettied the recipe search.
 Made a newEntry html file w dummy forms.
+
+zhangE -- 2019-11-24 00:30
+Added button overlay for image in recipes.

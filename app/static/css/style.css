@@ -3,15 +3,8 @@
 }
 
 .btn-link {
-  color: rgb(252, 217, 80); 
-  border-color: rgb(252, 217, 80);
-}
-
-.rsbtn {
-  position:relative;
-  display:block;
-  background-position:center center;
-  background-size:100%;
+  color: rgb(252, 217, 80);
+  background-color:transparent;
 }
 
 .btn:hover, .btn:active, .btn:focus {
@@ -33,21 +26,15 @@
   text-align: center;
   color: grey;
 }
-.bg { 
-  /* The image used */
+
+.container-fluid{
+  position: absolute;
+  left: 0px;
   background-image: url("../img/recipepic.jpg");
-
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
   background-size: cover;
-
-  filter: brightness(50%);
-}
-
-body, html {
-  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -20,7 +20,6 @@
         <title>{{ title }}</title>
     </head>
     <body>
-        <div class="container">
             <nav class="navbar navbar-expand-sm bg-dark">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/"><i class="fas fa-utensils"></i>MYplatE<i class="fas fa-circle"></i></a>
@@ -47,14 +46,13 @@
                 </ul>
                 <div class="nav navbar-nav ml-auto">
                     {% if current_user is none %}
-                        <li><a href="{{ url_for('signup') }}"> <button class="btn btn-link"><i class="fas fa-user-plus"></i>Sign up</button></a></li>
-                        <li><a href="{{ url_for('login') }}"> <button class="btn btn-link"><i class="fas fa-sign-in-alt"></i>Login</button></a></li>
+                        <li><a href="{{ url_for('signup') }}"> <button class="btn btn-link btn-outline-warning"><i class="fas fa-user-plus"></i>Sign up</button></a></li>
+                        <li><a href="{{ url_for('login') }}"> <button class="btn btn-link btn-outline-warning"><i class="fas fa-sign-in-alt"></i>Login</button></a></li>
                     {% else %}
-                        <li><a href="{{ url_for('logout') }}"> <button class="btn btn-link"><i class="fas fa-sign-out-alt"></i>Log out</button></a></li>
+                        <li><a href="{{ url_for('logout') }}"> <button class="btn btn-link btn-outline-warning"><i class="fas fa-sign-out-alt"></i>Log out</button></a></li>
                     {% endif %}
                 </div>
             </nav>
-        </div>
         <br>
         {% block image %} {% endblock image %}
         <div class = "container">
