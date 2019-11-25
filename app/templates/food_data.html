@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content%}
+    <form class="form-group" method="post">
+        <label class="form-control-sm" for="query">Search for a food: </label>
+        <input class="form-control-sm" id="query" name="query" type="text">
+        <!-- <select class="custom-select custom-select-sm" id="searchtype">
+        <option selected> Please select a search type</option>
+        <option value="name">Name</option>
+        <option value="ingredients">Ingredients</option>
+        </select> -->
+        <br><br>
+        <input class="btn-sm btn-warning" type="submit" value="Search"> <br><br>
+    </form>
+
+    {% if data %}
+        {{ data['description'] }} <br>
+        {{ data['foodNutrients']}}
+    {% endif %}
+{% endblock content %}
+
