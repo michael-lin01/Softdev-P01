@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<button type="button" class="btn" href="/new_entry">Add New Day's Entry</button>
+<a href="{{ url_for('newEntry') }}"> <button type="button" class="btn" href="/new_entry">Add New Day's Entry</button></a>
+
 {% endblock %}

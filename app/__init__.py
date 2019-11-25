@@ -54,8 +54,8 @@ def foodDiary():
 @app.route( '/new_entry')
 def newEntry():
     username = tester.getUserInfo( session[ 'userid'])[ 0]
-    return render_template( 'new_entry.html',
-                            username = username)
+    return render_template( 'new_entry.html'
+                            , username = username)
 
 
 @app.route('/login', methods=['GET', 'POST'])
