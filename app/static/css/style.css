@@ -40,6 +40,11 @@
 
 .recipe {
   background-image: url("../img/recipepic.jpg");
-  background-color: black;
-  background-blend-mode: screen;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; 
 }
