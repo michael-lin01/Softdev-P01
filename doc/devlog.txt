@@ -83,3 +83,7 @@ If we have extra time:
 
 zhangE -- 2019-11-26 00:17
 Add restaurant redirect page.
+
+luoY -- 2019-11-26
+Commented out the restaurant search but we can still use it
+Check out the tomato widgets: https://developers.zomato.com/widgets

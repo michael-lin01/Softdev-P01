@@ -54,6 +54,10 @@ def fooddata():
 def restaurant():
     return render_template('restaurant.html', title = "Restaurant", current_user = current_user())
 
+@app.route('/restaurant_search')
+def restaurantSearch():
+    return render_template('restaurant_search.html', title = "Restaurant")
+
 @app.route( '/food_diary')
 def foodDiary():
     if current_user() == None:
