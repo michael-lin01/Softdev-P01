@@ -1,4 +1,4 @@
-import os
+import os,requests
 
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 
@@ -23,7 +23,7 @@ def index():
 
 @app.route( '/recipe')
 def recipe():
-    return render_template('recipe.html', title = 'Recipe')
+    return render_template('recipe.html', title = 'Recipe', current_user = current_user())
 
 @app.route( '/recipe_search', methods=['GET', 'POST'])
 def recipeSearch():
@@ -44,16 +44,15 @@ def fooddata():
         #     "generalSearchInput": query
         # }
         url = "https://api.nal.usda.gov/fdc/v1/340946?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl"
-        req = urllib.request.Request(url)
-        data = json.loads(urllib.request.urlopen(req).read())
-        print(data)
-        #response = call.read()
-        #data = json.loads(response)['results']
+        #req = urllib.request.Request(url)
+        r = requests.get(url, data = {"generalSearchInput":"Cheddar cheese"})
+        results = r.json() # dictionary of search results
+
     return render_template('food_data.html', title = 'Food Data', data = data)
 
 @app.route('/restaurant')
 def restaurant():
-    return render_template('restaurant.html', title = "Restaurant")
+    return render_template('restaurant.html', title = "Restaurant", current_user = current_user())
 
 @app.route( '/food_diary')
 def foodDiary():
