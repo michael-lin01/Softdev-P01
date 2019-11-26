@@ -68,3 +68,18 @@ Made a newEntry html file w dummy forms.
 
 zhangE -- 2019-11-24 00:30
 Added button overlay for image in recipes.
+
+HOME STRETCH PLAN -- 2019-11-25 18:53
+1. Add food diary entry's for a user - Michael 11/27
+2. Food data - be able to search for a food and find nutirition facts about it - Michael 11/29
+3. Restaurant search - be able to search for restaurants by food/cuisine - Yaru 11/30
+4. Make a better way for the user to put in their api keys - Yaru 11/30
+5. Make the home page, recipe pages, and restuarant page look pretty - Emily 11/29
+
+
+If we have extra time:
+1. Automatic recipe processing for food diary entries
+2. Implement advanced searching for nutrients to utilize other fields in FoodData Central API
+
+zhangE -- 2019-11-26 00:17
+Add restaurant redirect page.

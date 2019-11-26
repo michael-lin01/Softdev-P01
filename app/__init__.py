@@ -10,6 +10,11 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(64)
 
+# makes session permanent
+@app.before_request
+def before_request():
+    session.permanent = True
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -24,11 +29,27 @@ def recipe():
 def recipeSearch():
     data = None
     if (request.form):
-        call = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
-        url = urllib.request.urlopen( call)
-        response = url.read()
+        url = "http://www.recipepuppy.com/api/?q={}&p=1".format(request.form['query'])
+        req = urllib.request.urlopen(url)
+        response = req.read()
         data = json.loads(response)['results']
     return render_template( 'recipe_search.html', title = "Recipe Search", data = data)
+
+@app.route( '/fooddata', methods=['GET', 'POST'])
+def fooddata():
+    data = None
+    if (request.form):
+        query = request.form['query']
+        # headers = {
+        #     "generalSearchInput": query
+        # }
+        url = "https://api.nal.usda.gov/fdc/v1/340946?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl"
+        req = urllib.request.Request(url)
+        data = json.loads(urllib.request.urlopen(req).read())
+        print(data)
+        #response = call.read()
+        #data = json.loads(response)['results']
+    return render_template('food_data.html', title = 'Food Data', data = data)
 
 @app.route('/restaurant')
 def restaurant():
@@ -41,11 +62,11 @@ def foodDiary():
       return redirect( url_for( 'login'))
     return render_template( 'food_diary.html', title = "Food Diary")
 
-@app.route( '/new_entry')
+@app.route( '/new_entry', methods=['GET', 'POST'])
 def newEntry():
-    username = tester.getUserInfo( session[ 'userid'])[ 0]
-    return render_template( 'new_entry.html',
-                            username = username)
+    print(request.form)
+    return render_template( 'new_entry.html'
+                            , user = current_user())
 
 
 @app.route('/login', methods=['GET', 'POST'])

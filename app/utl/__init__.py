@@ -27,9 +27,8 @@ def build_db():
     command = "CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY, username TEXT, password BLOB)"
     execute(command)    # run SQL statement
 
-    command = "CREATE TABLE IF NOT EXISTS blog (user_id INT, entryContent TEXT, entryDate TEXT)"
+    command = "CREATE TABLE IF NOT EXISTS blog (user_id INT, content TEXT, entry_date TEXT)"
     execute(command)    # run SQL statement
 
     command = "CREATE TABLE IF NOT EXISTS cache (query INT, response TEXT)"
     execute(command)    # run SQL statement
-    
