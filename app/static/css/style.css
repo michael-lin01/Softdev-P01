@@ -30,11 +30,16 @@
 .container-fluid{
   position: absolute;
   left: 0px;
-  background-image: url("../img/recipepic.jpg");
   height: 100vh;
   width: 100vw;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.recipe {
+  background-image: url("../img/recipepic.jpg");
+  background-color: black;
+  background-blend-mode: screen;
 }

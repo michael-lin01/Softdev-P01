@@ -1,17 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<form class="form-group" method="post">
-    <label for="query">Find a restaurant:</label>
-    <input class="form-control-sm" id="query" name="query" type="text">
-    <div class="dropdown-menu bg-dark">
-        <a class="dropdown-item" id="zip" name="zip">Zip Code</a>
-        <a class="dropdown-item" id="key" name="key">Keyword</a>
-    </div>
-    <br>
-    <br>
-    <input class="btn" type="submit" value="Search"></input> 
-</form>
-
+<div class="container-fluid">
+    <a href="restaurant_search"><button class="btn-sm btn-outline-light btn-link" type="button">Restaurants</button></a>
+</div>
 {% endblock content %}
