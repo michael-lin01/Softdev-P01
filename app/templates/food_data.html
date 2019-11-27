@@ -13,11 +13,11 @@
         <input class="btn-sm btn-warning" type="submit" value="Search"> <br><br>
     </form>
 
-    {% if data %}
+    {% if 'foods' in data %}
         {% for result in data['foods'] %}
             {{ result }} <br><br>
+            <a href = "{{ result['link'] }}"> {{ result['description'] }} </a><br><br>
         {% endfor %}
     {% endif %}
-    
-{% endblock content %}
 
+{% endblock content %}
