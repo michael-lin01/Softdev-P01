@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block content %}
 <form class="form-group" method="post">
   <label class="form-control-sm" for="query">Find a recipe: </label>
@@ -13,12 +14,13 @@
 </form>
 
 {% if data %}
-{% for result in data %}
-<h4>{{ result['title'] }} <br></h4>
-<a href = '{{ result["href"] }}'> Recipe </a> || {{ result['ingredients'] }} <br><br>
+  {% for result in data %}
+    <h4>{{ result['title'] }} <br></h4>
+    <a href = '{{ result["href"] }}'> Recipe </a> || {{ result['ingredients'] }} <br><br>
 
 
 <!-- <img src = "{{ result['thumbnail'] }}" class="img-thumbnail"> <br> -->
-{% endfor %}
+  {% endfor %}
 {% endif %}
+
 {% endblock content %}
