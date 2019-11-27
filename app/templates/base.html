@@ -45,7 +45,7 @@
                         </li>
                 </ul>
                 <div class="nav navbar-nav ml-auto">
-                    {% if current_user is none %}
+                    {% if 'user_id' not in  session %}
                         <li><a href="{{ url_for('signup') }}"> <button class="btn btn-link btn-outline-warning"><i class="fas fa-user-plus"></i>Sign up</button></a></li>
                         <li><a href="{{ url_for('login') }}"> <button class="btn btn-link btn-outline-warning"><i class="fas fa-sign-in-alt"></i>Login</button></a></li>
                     {% else %}

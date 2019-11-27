@@ -23,7 +23,7 @@ def index():
 
 @app.route( '/recipe')
 def recipe():
-    return render_template('recipe.html', title = 'Recipe', current_user = current_user())
+    return render_template('recipe.html', title = 'Recipe')
 
 @app.route( '/recipe_search', methods=['GET', 'POST'])
 def recipeSearch():
@@ -49,7 +49,7 @@ def fooddata():
 
 @app.route('/restaurant')
 def restaurant():
-    return render_template('restaurant.html', title = "Restaurant", current_user = current_user())
+    return render_template('restaurant.html', title = "Restaurant")
 
 @app.route( '/food_diary')
 def foodDiary():
