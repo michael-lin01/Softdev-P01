@@ -39,13 +39,12 @@ def recipeSearch():
 def fooddata():
     data = None
     if (request.form):
-        query = request.form['query']
+        food = request.form['food']
         url = "https://api.nal.usda.gov/fdc/v1/search?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl"
-        data = '{"generalSearchInput":"Cheddar cheese"}'
+        data = '{"generalSearchInput":"%s"}' % food
         headers = {"Content-Type":"application/json"}
         r = requests.post(url, data = data, headers = headers)
-        results = r.json() # dictionary of search results
-        print(results)
+        data = r.json() # dictionary of search results
     return render_template('food_data.html', title = 'Food Data', data = data)
 
 @app.route('/restaurant')
