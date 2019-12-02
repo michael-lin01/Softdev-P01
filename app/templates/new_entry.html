@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
+
 <form class="form-group" method="post">
-  <input class="form-control" id = date type="text" placeholder='Date (required)'>
-  <input class="form-control" id = breakfast type="text" placeholder='Breakfast'>
-  <input class="form-control" id = lunch type="text" placeholder='Lunch'>
-  <input class="form-control" id = dinner type="text" placeholder='Dinner'>
-  <input class="form-control" id = snacks type="text" placeholder='Snacks'>
-  <input class="form-control" id = restaurant type="text" placeholder='Restaurant'>
+  <input id="datepicker" width="276" placeholder='mm/dd/yyyy'/>
+  <script>
+      $('#datepicker').datepicker({
+          uiLibrary: 'bootstrap4'
+      });
+  </script>
+  <input class="form-control" name = "breakfast" type="text" placeholder='Breakfast'>
+  <input class="form-control" name = "lunch" type="text" placeholder='Lunch'>
+  <input class="form-control" name = "dinner" type="text" placeholder='Dinner'>
+  <input class="form-control" name = "snacks" type="text" placeholder='Snacks'>
+  <input class="form-control" name = "restaurant" type="text" placeholder='Restaurant'>
   <br>
   <input class="btn-sm btn-warning" type="submit" value="Submit">
 </form>
