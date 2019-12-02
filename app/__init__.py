@@ -3,6 +3,7 @@ import os,requests
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 
 from app.utl.user import User
+from app.utl.blog import Blog
 from app.session import *
 import urllib.request, json
 
@@ -64,8 +65,10 @@ def foodDiary():
 @app.route( '/new_entry', methods=['GET', 'POST'])
 def newEntry():
     # print(request.form)
-    return render_template( 'new_entry.html'
-                            , user = current_user())
+    if (request.form):
+        # Blog.add_entry(1,"test","test")
+        flash("Entry added successfully", 'success')
+    return render_template('new_entry.html',title = "New Entry", user = current_user())
 
 
 @app.route('/login', methods=['GET', 'POST'])
