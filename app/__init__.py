@@ -47,7 +47,7 @@ def fooddata():
         r = requests.post(url, data = data, headers = headers)
         data = r.json() # dictionary of search results
         for result in data['foods']:
-            result['link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl".format(
+            result['link'] = "https://fdc.nal.usda.gov/fdc-app.html#/food-details/{}/nutrients".format(
                                         result['fdcId'])
     return render_template('food_data.html', title = 'Food Data', data = data)
 
@@ -60,13 +60,15 @@ def foodDiary():
     if current_user() == None:
       flash('You must log in to access this page', 'warning')
       return redirect( url_for( 'login'))
-    return render_template( 'food_diary.html', title = "Food Diary")
+    blog = Blog(current_user().id)
+    return render_template( 'food_diary.html', title = "Food Diary", blog = blog)
 
 @app.route( '/new_entry', methods=['GET', 'POST'])
 def newEntry():
     # print(request.form)
     if (request.form):
-        # Blog.add_entry(1,"test","test")
+        entry = request.form
+        Blog.add_entry(current_user().id, entry['breakfast'], entry['lunch'], entry['dinner'], entry['snacks'], entry['restaurant'], entry['datepicker'])
         flash("Entry added successfully", 'success')
     return render_template('new_entry.html',title = "New Entry", user = current_user())
 
