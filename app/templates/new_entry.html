@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
+<div class = "container">
+
+</div>
+<br>
 <form class="form-group" method="post">
-  <input class="form-control" id = date type="text" placeholder='Date (required)'>
+  <input id="datepicker" width="276" placeholder='mm/dd/yyyy'/>
+  <script>
+      $('#datepicker').datepicker({
+          uiLibrary: 'bootstrap4'
+      });
+  </script>
   <input class="form-control" id = breakfast type="text" placeholder='Breakfast'>
   <input class="form-control" id = lunch type="text" placeholder='Lunch'>
   <input class="form-control" id = dinner type="text" placeholder='Dinner'>

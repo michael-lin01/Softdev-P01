@@ -63,7 +63,7 @@ def foodDiary():
 
 @app.route( '/new_entry', methods=['GET', 'POST'])
 def newEntry():
-    print(request.form)
+    # print(request.form)
     return render_template( 'new_entry.html'
                             , user = current_user())
 
