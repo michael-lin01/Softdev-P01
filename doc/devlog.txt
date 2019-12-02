@@ -97,3 +97,4 @@ Added carousel to homepage.
 
 luoY -- 2019-12-02 16:38
 Did the restaurants search !!!! Woo!!! Got help from William from CSDojo.
+Hello @ Michael: I am super duper sorry but there is gonna be a merge conflict bc I didn't understand the code so I was putting comments and going through it line by line in the CSDojo lolol so u might have to comment out one of the code sets ukwim in the food data route. but it will be ok bc u r adaptive and will know how to deal w merge conflicts woo hoo !

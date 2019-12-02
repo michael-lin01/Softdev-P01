@@ -46,17 +46,17 @@ def fooddata():
         headers = { "Content-Type":"application/json"}     # context # json = ***************
         r = requests.post( url, data = data, headers = headers)  
         data = r.json() # dictionary of search results
-<<<<<<< HEAD
-        print( data)
-        for result in data[ 'foods']:
-            result[ 'link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl".format( result[ 'fdcId'])
-    return render_template( 'food_data.html', title = 'Food Data', data = data)
-=======
-        for result in data['foods']:
-            result['link'] = "https://fdc.nal.usda.gov/fdc-app.html#/food-details/{}/nutrients".format(
-                                        result['fdcId'])
-    return render_template('food_data.html', title = 'Food Data', data = data)
->>>>>>> 503312a6281df265b9228d035ba32457439d3ab3
+# <<<<<<< HEAD
+#         print( data)
+#         for result in data[ 'foods']:
+#             result[ 'link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl".format( result[ 'fdcId'])
+#     return render_template( 'food_data.html', title = 'Food Data', data = data)
+# =======
+#         for result in data['foods']:
+#             result['link'] = "https://fdc.nal.usda.gov/fdc-app.html#/food-details/{}/nutrients".format(
+#                                         result['fdcId'])
+#     return render_template('food_data.html', title = 'Food Data', data = data)
+# >>>>>>> 503312a6281df265b9228d035ba32457439d3ab3
 
 @app.route('/restaurant')
 def restaurant():
