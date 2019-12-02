@@ -55,9 +55,16 @@ def fooddata():
 def restaurant():
     return render_template('restaurant.html', title = "Restaurant")
 
-@app.route('/restaurant_search')
+@app.route('/restaurant_search', methods=[ 'GET', 'POST'])
 def restaurantSearch():
-    return render_template('restaurant_search.html', title = "Restaurant")
+    # return render_template('restaurant_search.html', title = "Restaurant")
+    data = None
+    if ( request.form):
+        url = "https://developers.zomato.com/documentation#!/restaurant/search".format( request.form[ 'query'])
+        req = urllib.request.urlopen( url)
+        response = req.read()
+        data = json.loads( response)[ 'results']
+    return render_template( 'restaurant_search.html', title = "Restaurant", data = data)
 
 @app.route( '/food_diary')
 def foodDiary():
