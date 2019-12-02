@@ -16,6 +16,9 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/0691185925.js" crossorigin="anonymous"></script>
+        <!-- date picker -->
+        <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script> 
+        <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
         <title>{{ title }}</title>
     </head>
@@ -40,12 +43,12 @@
                             </a>
                             <div class="dropdown-menu bg-dark">
                                 <a class="dropdown-item" href="{{ url_for('foodDiary') }}">My Food Diary</a>
-                                <a class="dropdown-item" href="#">Nutrition Data</a>
+                                <a class="dropdown-item" href="{{ url_for('fooddata')}}">Nutrition Data</a>
                             </div>
                         </li>
                 </ul>
                 <div class="nav navbar-nav ml-auto">
-                    {% if current_user is none %}
+                    {% if 'user_id' not in  session %}
                         <li><a href="{{ url_for('signup') }}"> <button class="btn btn-link btn-outline-warning"><i class="fas fa-user-plus"></i>Sign up</button></a></li>
                         <li><a href="{{ url_for('login') }}"> <button class="btn btn-link btn-outline-warning"><i class="fas fa-sign-in-alt"></i>Login</button></a></li>
                     {% else %}

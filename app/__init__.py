@@ -1,8 +1,9 @@
-import os
+import os, requests
 
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 
 from app.utl.user import User
+from app.utl.blog import Blog
 from app.session import *
 import urllib.request, json
 
@@ -19,7 +20,6 @@ def before_request():
 @app.route('/index')
 def index():
     return render_template("index.html", title = "Home", current_user = current_user())
-
 
 @app.route( '/recipe')
 def recipe():
@@ -38,33 +38,40 @@ def recipeSearch():
 @app.route( '/fooddata', methods=['GET', 'POST'])
 def fooddata():
     data = None
-    if (request.form):
-        query = request.form['query']
-        # headers = {
-        #     "generalSearchInput": query
-        # }
-        url = "https://api.nal.usda.gov/fdc/v1/340946?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl"
-        req = urllib.request.Request(url)
-        data = json.loads(urllib.request.urlopen(req).read())
-        print(data)
-        #response = call.read()
-        #data = json.loads(response)['results']
-    return render_template('food_data.html', title = 'Food Data', data = data)
+    if ( 'food' in request.form):     # checks that food key is in post
+        food = request.form[ 'food']   # gets the key value
+        url = "https://api.nal.usda.gov/fdc/v1/search?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl"  
+        data = '{"generalSearchInput":"%s", "includeDataTypes":{"Survey (FNDDS)":true,"Foundation":true,"Branded":false} }'
+             # hardcoding post keyval pairs sending to server, returns some data
+        headers = { "Content-Type":"application/json"}     # context # json = ***************
+        r = requests.post( url, data = data, headers = headers)  
+        data = r.json() # dictionary of search results
+        print( data)
+        for result in data[ 'foods']:
+            result[ 'link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl".format( result[ 'fdcId'])
+    return render_template( 'food_data.html', title = 'Food Data', data = data)
 
 @app.route('/restaurant')
 def restaurant():
     return render_template('restaurant.html', title = "Restaurant")
 
-@app.route('/restaurant_search', methods=[ 'GET', 'POST'])
+# William Cao from Dojo helped me
+@app.route( '/restaurant_search', methods=[ 'GET', 'POST'])
 def restaurantSearch():
     # return render_template('restaurant_search.html', title = "Restaurant")
     data = None
     if ( request.form):
-        url = "https://developers.zomato.com/documentation#!/restaurant/search".format( request.form[ 'query'])
-        req = urllib.request.urlopen( url)
-        response = req.read()
-        data = json.loads( response)[ 'results']
-    return render_template( 'restaurant_search.html', title = "Restaurant", data = data)
+        restaurant = request.form[ 'query']
+        url = "https://developers.zomato.com/api/v2.1/search?q={}&count=10".format( restaurant)
+        headers = { "Content-Type": "application/json", "user-key": "83ec7516abae7aafeda2c0ae9bef6c0a"}
+        r = requests.get( url, headers=headers)
+        data = r.json()
+        print( data)
+        for result in data[ 'restaurants']:
+            print( result[ 'restaurant'][ 'name'])
+        # for result in data[ 'restaurants'][ 0][ 'restaurant']:
+        #     result[ 'url'] = 'https://www.zomato.com/balaghat/the-chocolate-story-balaghat-locality?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1'.format( result[ 'id'])
+    return render_template( 'restaurant_search.html', title = "Restaurant Search", data = data)
 
 @app.route( '/food_diary')
 def foodDiary():
@@ -75,9 +82,11 @@ def foodDiary():
 
 @app.route( '/new_entry', methods=['GET', 'POST'])
 def newEntry():
-    print(request.form)
-    return render_template( 'new_entry.html'
-                            , user = current_user())
+    # print(request.form)
+    if (request.form):
+        # Blog.add_entry(1,"test","test")
+        flash("Entry added successfully", 'success')
+    return render_template('new_entry.html',title = "New Entry", user = current_user())
 
 
 @app.route('/login', methods=['GET', 'POST'])
