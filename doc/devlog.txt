@@ -91,3 +91,6 @@ Check out the tomato widgets: https://developers.zomato.com/widgets
 linM -- 2019-11-26 19:54
 Updated requirements file
 Requests to food data API working now
+
+zhangE -- 2019-12-01 22:43
+Added carousel to homepage.
