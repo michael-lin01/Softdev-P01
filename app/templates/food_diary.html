@@ -3,6 +3,16 @@
 {% block content %}
 <a href="{{ url_for('newEntry') }}"> <button type="button" class="btn" href="/new_entry">Add New Day's Entry</button></a><br><br>
 
-{{blog.data}}
+{% for entry in blog.data %}
+    {{ entry[-1] }} <br>
+    Breakfast: {{ entry [1] }} <br>
+    Lunch: {{ entry [2] }} <br>
+    Dinner: {{ entry [3] }} <br>
+    Snacks: {{ entry [4] }} <br>
+    Restaurants: {{ entry [5] }}
+
+    <br><br>
+{% endfor %}
+
 
 {% endblock %}

@@ -46,6 +46,7 @@ def fooddata():
         headers = { "Content-Type":"application/json"}     # context # json = ***************
         r = requests.post( url, data = data, headers = headers)  
         data = r.json() # dictionary of search results
+<<<<<<< HEAD
 # <<<<<<< HEAD
 #         print( data)
 #         for result in data[ 'foods']:
@@ -57,6 +58,12 @@ def fooddata():
 #                                         result['fdcId'])
 #     return render_template('food_data.html', title = 'Food Data', data = data)
 # >>>>>>> 503312a6281df265b9228d035ba32457439d3ab3
+=======
+        for result in data['foods']:
+            result['link'] = "https://fdc.nal.usda.gov/fdc-app.html#/food-details/{}/nutrients".format(
+                                        result['fdcId'])
+    return render_template('food_data.html', title = 'Food Data', data = data)
+>>>>>>> 3a3b3ce3c0ce3c68093321233fe44644dbe6a185
 
 @app.route('/restaurant')
 def restaurant():
@@ -89,10 +96,17 @@ def foodDiary():
 @app.route( '/new_entry', methods=['GET', 'POST'])
 def newEntry():
     # print(request.form)
+    if current_user() == None: # have to be logged in to make an entry
+      flash('You must log in to access this page', 'warning')
+      return redirect( url_for( 'login'))
     if (request.form):
         entry = request.form
-        Blog.add_entry(current_user().id, entry['breakfast'], entry['lunch'], entry['dinner'], entry['snacks'], entry['restaurant'], entry['datepicker'])
-        flash("Entry added successfully", 'success')
+        date = "%s-%s-%s" % (entry['datepicker'][-4:],entry['datepicker'][:2],entry['datepicker'][3:5]) # convert string from date picker into sqlite date format
+        if (Blog.check_date_taken(current_user().id,date)): # flash message to user if they put in a date that is already taken
+            flash("Already an entry made for this date", "warning")
+        else: 
+            Blog.add_entry(current_user().id, entry['breakfast'], entry['lunch'], entry['dinner'], entry['snacks'], entry['restaurant'], date)
+            flash("Entry added successfully", 'success')
     return render_template('new_entry.html',title = "New Entry", user = current_user())
 
 
