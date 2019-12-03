@@ -30,5 +30,7 @@ The Zomato and FoodData Central APIs require a key to use them
 3. Open the "keys.json" file and replace "YOUR_API_KEY_HERE" next to "fooddata" with the API key you obtained
 
 #### Zomato
-1. Sign up for an account at [Zomato](https://developers.zomato.com/api)
-2.
+1. Go to [Zomato](https://developers.zomato.com/api) and scroll down to the bottom
+2. Click "Generate API key" and sign up for an account.
+3. Open the "keys.json" file and replace "YOUR_API_KEY_HERE" next to "zomato" with the API key you obtained
+
