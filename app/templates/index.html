@@ -2,8 +2,9 @@
 
 {% block content %}
     {% if current_user is not none %}
-        <p>Currently logged in as: {{ current_user.username }}</p>
+        Currently logged in as: {{ current_user.username }}
     {% endif %}
+    <div class="darkback flex-container">
     <div id="welcome" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#welcome" data-slide-to="0" class="active"></li>
@@ -12,17 +13,22 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="../static/img/recipepic.jpg" alt="recipe">
+                <img class="d-block w-auto" src="../static/img/recipepic.jpg" alt="recipe">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Browse our recipe book</h5>
-                    <p> From recipepuppy api</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="../static/img/restaurantpic.jpg" alt="restaurant">
+                <img class="d-block w-auto" src="../static/img/restaurantpic.jpg" alt="restaurant">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Browse our restaurants</h5>
+                </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="../static/img/diarypic.jpg" alt="diary">
+                <img class="d-block w-auto" src="../static/img/diarypic.jpg" alt="diary">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Track what you eat</h5>
+                </div>
             </div>
         </div>
         <a class="carousel-control-prev" href="#welcome" role="button" data-slide="prev">
@@ -34,11 +40,17 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div class="container-fluid">
-        <div class="d-flex flex-row">
-            <div class="flex-sm-row">
-                <img class="img-thumbnail" src="../static/img/recipepic.jpg" alt="pic">
+    </div>
+
+        <div class="flex-container">
+            <div class="flex-column circular">
+                <img src="../static/img/recipepic.jpg" alt="pic">
+            </div>
+            <div class="flex-column circular">
+                <img src="../static/img/restaurantpic.jpg" alt="pic">
+            </div>
+            <div class="flex-column circular">
+                <img src="../static/img/diarypic.jpg" alt="pic">
             </div>
         </div>
-    </div>
 {% endblock content %}

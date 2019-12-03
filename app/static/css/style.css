@@ -58,12 +58,49 @@
 }
 
 .carousel-inner {
-  width:auto;
+  width: auto;
   height: 900px;
-  padding-left: 0;
-  margin-left: 0;
+  margin: auto;
+}
+
+.carousel-inner img {
+  display:block;
+  height: auto; 
+  max-width: 100%;
 }
 
 .main-container {
   height:vh;
 }
+
+.circular {
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.circular img{
+  width: auto;
+  height: 100%;
+  margin-left: -50px;
+  display: block;
+  margin-right: auto;
+}
+
+.flex-container {
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.darkback{
+  background-color: black;
+}
+h5 {
+  margin-bottom: 50px;
+}
+
+
