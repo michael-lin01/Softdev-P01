@@ -1,4 +1,4 @@
-# MeyPlate by Team willCodeForFood
+# MYPlatE by Team willCodeForFood
 
 Michael: Project Manager
 
@@ -21,3 +21,14 @@ After installing all the dependencies, run the program by running:
 ```shell
     python3 app.py
 ```
+## Obtaining API keys
+The Zomato and FoodData Central APIs require a key to use them
+
+#### FoodData Central
+1. Sign up for an API key at [FoodData Central](https://fdc.nal.usda.gov/api-key-signup.html)
+2. The API key should show up on the screen and it is also emailed to you
+3. Open the "keys.json" file and replace "YOUR_API_KEY_HERE" next to "fooddata" with the API key you obtained
+
+#### Zomato
+1. Sign up for an account at [Zomato](https://developers.zomato.com/api)
+2.
