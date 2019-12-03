@@ -47,6 +47,19 @@ def fooddata():
         headers = { "Content-Type":"application/json"}     # context # json = ***************
         r = requests.post( url, data = data, headers = headers)  
         data = r.json() # dictionary of search results
+<<<<<<< HEAD
+# <<<<<<< HEAD
+#         print( data)
+#         for result in data[ 'foods']:
+#             result[ 'link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl".format( result[ 'fdcId'])
+#     return render_template( 'food_data.html', title = 'Food Data', data = data)
+# =======
+#         for result in data['foods']:
+#             result['link'] = "https://fdc.nal.usda.gov/fdc-app.html#/food-details/{}/nutrients".format(
+#                                         result['fdcId'])
+#     return render_template('food_data.html', title = 'Food Data', data = data)
+# >>>>>>> 503312a6281df265b9228d035ba32457439d3ab3
+=======
         for result in data['foods']:
             result['link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl".format(
                                         result['fdcId'])
@@ -55,6 +68,7 @@ def fooddata():
         response = req.read()
         data = json.loads(response)
     return render_template('food_data.html', title = 'Food Data', data = data)
+>>>>>>> 3a3b3ce3c0ce3c68093321233fe44644dbe6a185
 
 @app.route('/restaurant')
 def restaurant():
@@ -74,8 +88,6 @@ def restaurantSearch():
         print( data)
         for result in data[ 'restaurants']:
             print( result[ 'restaurant'][ 'name'])
-        # for result in data[ 'restaurants'][ 0][ 'restaurant']:
-        #     result[ 'url'] = 'https://www.zomato.com/balaghat/the-chocolate-story-balaghat-locality?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1'.format( result[ 'id'])
     return render_template( 'restaurant_search.html', title = "Restaurant Search", data = data)
 
 @app.route( '/food_diary')
