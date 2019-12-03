@@ -38,17 +38,22 @@ def recipeSearch():
 @app.route( '/fooddata', methods=['GET', 'POST'])
 def fooddata():
     data = None
+    print(request.form)
     if ( 'food' in request.form):     # checks that food key is in post
         food = request.form[ 'food']   # gets the key value
         url = "https://api.nal.usda.gov/fdc/v1/search?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl"  
-        data = '{"generalSearchInput":"%s", "includeDataTypes":{"Survey (FNDDS)":true,"Foundation":true,"Branded":false} }'
+        data = '{"generalSearchInput":"%s", "includeDataTypes":{"Survey (FNDDS)":true,"Foundation":true,"Branded":false} }' % food
              # hardcoding post keyval pairs sending to server, returns some data
         headers = { "Content-Type":"application/json"}     # context # json = ***************
         r = requests.post( url, data = data, headers = headers)  
         data = r.json() # dictionary of search results
         for result in data['foods']:
-            result['link'] = "https://fdc.nal.usda.gov/fdc-app.html#/food-details/{}/nutrients".format(
+            result['link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl".format(
                                         result['fdcId'])
+    elif('link' in request.form):
+        req = urllib.request.urlopen(request.form['link'])
+        response = req.read()
+        data = json.loads(response)
     return render_template('food_data.html', title = 'Food Data', data = data)
 
 @app.route('/restaurant')
