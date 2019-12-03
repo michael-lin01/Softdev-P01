@@ -29,7 +29,7 @@ def index():
 
 @app.route( '/recipe')
 def recipe():
-    return render_template('recipe.html', title = 'Recipe')
+    return render_template('recipe.html', title = 'Recipe',current_user = current_user())
 
 @app.route( '/recipe_search', methods=['GET', 'POST'])
 def recipeSearch():
@@ -39,13 +39,14 @@ def recipeSearch():
         req = urllib.request.urlopen(url)
         response = req.read()
         data = json.loads(response)['results']
-    return render_template( 'recipe_search.html', title = "Recipe Search", data = data)
+    return render_template( 'recipe_search.html', title = "Recipe Search", data = data,current_user = current_user())
 
 @app.route( '/fooddata', methods=['GET', 'POST'])
 def fooddata():
     data = None
-    print(request.form)
-    if ( 'food' in request.form):     # checks that food key is in post
+    if (fooddata_key == "YOUR_API_KEY_HERE"):
+        flash("FoodData API key not in the right place! Please look at README.md", "danger")
+    elif ( 'food' in request.form):     # checks that food key is in post
         food = request.form[ 'food']   # gets the key value
         url = "https://api.nal.usda.gov/fdc/v1/search?api_key={}".format(fooddata_key)
         data = '{"generalSearchInput":"%s", "includeDataTypes":{"Survey (FNDDS)":true,"Foundation":true,"Branded":false} }' % food
@@ -60,18 +61,20 @@ def fooddata():
         req = urllib.request.urlopen(request.form['link'])
         response = req.read()
         data = json.loads(response)
-    return render_template('food_data.html', title = 'Food Data', data = data)
+    return render_template('food_data.html', title = 'Food Data', data = data, current_user = current_user())
 
 @app.route('/restaurant')
 def restaurant():
-    return render_template('restaurant.html', title = "Restaurant")
+    return render_template('restaurant.html', title = "Restaurant", current_user = current_user())
 
 # William Cao from Dojo helped me
 @app.route( '/restaurant_search', methods=[ 'GET', 'POST'])
 def restaurantSearch():
     # return render_template('restaurant_search.html', title = "Restaurant")
     data = None
-    if ( request.form):
+    if (zomato_key == "YOUR_API_KEY_HERE"):
+        flash("Zomato API key not in the right place! Please look at README.md", "danger")
+    elif ( request.form):
         restaurant = request.form[ 'query']
         url = "https://developers.zomato.com/api/v2.1/search?q={}&count=10".format( restaurant)
         headers = { "Content-Type": "application/json", "user-key": zomato_key}
@@ -80,7 +83,7 @@ def restaurantSearch():
         print( data)
         for result in data[ 'restaurants']:
             print( result[ 'restaurant'][ 'name'])
-    return render_template( 'restaurant_search.html', title = "Restaurant Search", data = data)
+    return render_template( 'restaurant_search.html', title = "Restaurant Search", data = data, current_user = current_user())
 
 @app.route( '/food_diary')
 def foodDiary():
@@ -88,7 +91,7 @@ def foodDiary():
       flash('You must log in to access this page', 'warning')
       return redirect( url_for( 'login'))
     blog = Blog(current_user().id)
-    return render_template( 'food_diary.html', title = "Food Diary", blog = blog)
+    return render_template( 'food_diary.html', title = "Food Diary", blog = blog, current_user = current_user())
 
 @app.route( '/new_entry', methods=['GET', 'POST'])
 def newEntry():
@@ -104,7 +107,7 @@ def newEntry():
         else:
             Blog.add_entry(current_user().id, entry['breakfast'], entry['lunch'], entry['dinner'], entry['snacks'], entry['restaurant'], date)
             flash("Entry added successfully", 'success')
-    return render_template('new_entry.html',title = "New Entry", user = current_user())
+    return render_template('new_entry.html',title = "New Entry", current_user = current_user())
 
 
 @app.route('/login', methods=['GET', 'POST'])
