@@ -58,7 +58,7 @@
             </nav>
         <br>
         {% block image %} {% endblock image %}
-        <div class = "container">
+        <div class = "main-container">
             {% with messages = get_flashed_messages(with_categories = true) %}
                 {% if messages %}
                     {% for category, message in messages %}
@@ -73,8 +73,8 @@
         </div>
 
         
-            <footer class="copyright">
-                &copy; WillCodeForFood 2019
-            </footer>
+        <div class="copyright">
+            &copy; WillCodeForFood 2019
+        </div>
     </body>
 </html>
