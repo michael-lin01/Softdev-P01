@@ -165,6 +165,7 @@ def signup():
 
         if valid:
             User.new_user(username, password)
+            flash("Account successfully created!", "success")
             return redirect('login')
     return render_template('signup.html', title = 'Sign Up', current_user = current_user())
 

@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 
+{%block flashes %}{% endblock flashes %}
 {% block image %}
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class = "alert alert-{{ category }} text-center" role = "alert" style="margin-bottom:0">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <div class="darkback flex-container">
     <div id="welcome" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">

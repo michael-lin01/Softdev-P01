@@ -61,12 +61,12 @@
                     {% endif %}
                 </div>
             </nav>
-        <div class = "main-container">
-            {% block image %} {% endblock image %}
-        </div>
+        
         <div class = "container">
+        {% block flashes %}
             {% with messages = get_flashed_messages(with_categories = true) %}
                 {% if messages %}
+                <br>
                     {% for category, message in messages %}
                         <div class = "alert alert-{{ category }}" role = "alert" style="margin-bottom:0">
                             {{message}}
@@ -74,9 +74,12 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
+        {% endblock flashes %}
             {% block content %} {% endblock content %}
         </div>
-
+        <div class = "main-container">
+            {% block image %} {% endblock image %}
+        </div>
 
         <div class="copyright">
             &copy; WillCodeForFood 2019
