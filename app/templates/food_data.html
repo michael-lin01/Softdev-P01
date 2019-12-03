@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content%}
+<br>
     <form class="form-group" method="post">
         <label class="form-control-sm" for="food">Search for a food: </label>
         <input class="form-control-sm" id="food" name="food" type="text">
@@ -10,7 +11,7 @@
 
 
     {% if data %}
-        
+
         {% if 'foods' in data %}
             <form class="form-group" method="post">
             {% for result in data['foods'] %}
@@ -18,7 +19,7 @@
             <button type = "submit" class="btn btn-link foods" name = "link" id = "foods" value = "{{ result['link'] }}"> {{ result['description'] }} </button> <br><br>
             {% endfor %}
             </form>
-        
+
         {% elif 'foodNutrients' in data %}
             <h2>{{data['description']}}</h2><br>
             <h5>Portion: 100g</h5><br>

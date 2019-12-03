@@ -11,6 +11,12 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(64)
 
+f = open("our_keys.json","r")
+data = f.read()
+keys = json.loads(data)
+zomato_key = keys['zomato']
+fooddata_key = keys['fooddata']
+
 # makes session permanent
 @app.before_request
 def before_request():
@@ -41,15 +47,15 @@ def fooddata():
     print(request.form)
     if ( 'food' in request.form):     # checks that food key is in post
         food = request.form[ 'food']   # gets the key value
-        url = "https://api.nal.usda.gov/fdc/v1/search?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl"  
+        url = "https://api.nal.usda.gov/fdc/v1/search?api_key={}".format(fooddata_key)
         data = '{"generalSearchInput":"%s", "includeDataTypes":{"Survey (FNDDS)":true,"Foundation":true,"Branded":false} }' % food
              # hardcoding post keyval pairs sending to server, returns some data
         headers = { "Content-Type":"application/json"}     # context # json = ***************
-        r = requests.post( url, data = data, headers = headers)  
+        r = requests.post( url, data = data, headers = headers)
         data = r.json() # dictionary of search results
         for result in data['foods']:
-            result['link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl".format(
-                                        result['fdcId'])
+            result['link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key={}".format(
+                                        result['fdcId'], fooddata_key)
     elif('link' in request.form):
         req = urllib.request.urlopen(request.form['link'])
         response = req.read()
@@ -68,7 +74,7 @@ def restaurantSearch():
     if ( request.form):
         restaurant = request.form[ 'query']
         url = "https://developers.zomato.com/api/v2.1/search?q={}&count=10".format( restaurant)
-        headers = { "Content-Type": "application/json", "user-key": "83ec7516abae7aafeda2c0ae9bef6c0a"}
+        headers = { "Content-Type": "application/json", "user-key": zomato_key}
         r = requests.get( url, headers=headers)
         data = r.json()
         print( data)
@@ -95,7 +101,7 @@ def newEntry():
         date = "%s-%s-%s" % (entry['datepicker'][-4:],entry['datepicker'][:2],entry['datepicker'][3:5]) # convert string from date picker into sqlite date format
         if (Blog.check_date_taken(current_user().id,date)): # flash message to user if they put in a date that is already taken
             flash("Already an entry made for this date", "warning")
-        else: 
+        else:
             Blog.add_entry(current_user().id, entry['breakfast'], entry['lunch'], entry['dinner'], entry['snacks'], entry['restaurant'], date)
             flash("Entry added successfully", 'success')
     return render_template('new_entry.html',title = "New Entry", user = current_user())
