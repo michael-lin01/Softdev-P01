@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="../static/css/style.css">
@@ -46,6 +45,13 @@
                                 <a class="dropdown-item" href="{{ url_for('fooddata')}}">Nutrition Data</a>
                             </div>
                         </li>
+                    </li>
+                    <li><p class="navbar-text">
+                        {% if current_user is not none %}
+                        Currently logged in as: {{ current_user().username }}
+                        {% endif %}
+                        </p>
+                    </li>
                 </ul>
                 <div class="nav navbar-nav ml-auto">
                     {% if 'user_id' not in  session %}
