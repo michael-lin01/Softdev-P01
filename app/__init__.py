@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(64)
 
-f = open("our_keys.json","r")
+f = open("keys.json","r")
 data = f.read()
 keys = json.loads(data)
 zomato_key = keys['zomato']
