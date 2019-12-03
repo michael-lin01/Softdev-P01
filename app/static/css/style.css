@@ -13,6 +13,11 @@
   color:white;
 }
 
+#foods, #foods:hover {
+  color: blue;
+  background-color:white;
+}
+
 .nav-link:hover, .nav-link:active, .nav-link:focus, .dropdown-item:hover, .dropdown-item:active, .dropdown-item:focus {
   color: white; 
   background-color: rgb(167, 164, 164); 

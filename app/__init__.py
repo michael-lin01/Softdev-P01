@@ -21,7 +21,6 @@ def before_request():
 def index():
     return render_template("index.html", title = "Home", current_user = current_user())
 
-
 @app.route( '/recipe')
 def recipe():
     return render_template('recipe.html', title = 'Recipe')
@@ -39,35 +38,66 @@ def recipeSearch():
 @app.route( '/fooddata', methods=['GET', 'POST'])
 def fooddata():
     data = None
-    if ('food' in request.form):
-        food = request.form['food']
-        url = "https://api.nal.usda.gov/fdc/v1/search?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl"
-        data = '{"generalSearchInput":"%s", "includeDataTypes":{"Survey (FNDDS)":true,"Foundation":true,"Branded":false} }'  % food
-        headers = {"Content-Type":"application/json"}
-        r = requests.post(url, data = data, headers = headers)
+    print(request.form)
+    if ( 'food' in request.form):     # checks that food key is in post
+        food = request.form[ 'food']   # gets the key value
+        url = "https://api.nal.usda.gov/fdc/v1/search?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl"  
+        data = '{"generalSearchInput":"%s", "includeDataTypes":{"Survey (FNDDS)":true,"Foundation":true,"Branded":false} }' % food
+             # hardcoding post keyval pairs sending to server, returns some data
+        headers = { "Content-Type":"application/json"}     # context # json = ***************
+        r = requests.post( url, data = data, headers = headers)  
         data = r.json() # dictionary of search results
         for result in data['foods']:
             result['link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key=eVfCzyFo4P5Aoie9Lt1kniHK7iUfafWXNMYYbwsl".format(
                                         result['fdcId'])
+    elif('link' in request.form):
+        req = urllib.request.urlopen(request.form['link'])
+        response = req.read()
+        data = json.loads(response)
     return render_template('food_data.html', title = 'Food Data', data = data)
 
 @app.route('/restaurant')
 def restaurant():
     return render_template('restaurant.html', title = "Restaurant")
 
+# William Cao from Dojo helped me
+@app.route( '/restaurant_search', methods=[ 'GET', 'POST'])
+def restaurantSearch():
+    # return render_template('restaurant_search.html', title = "Restaurant")
+    data = None
+    if ( request.form):
+        restaurant = request.form[ 'query']
+        url = "https://developers.zomato.com/api/v2.1/search?q={}&count=10".format( restaurant)
+        headers = { "Content-Type": "application/json", "user-key": "83ec7516abae7aafeda2c0ae9bef6c0a"}
+        r = requests.get( url, headers=headers)
+        data = r.json()
+        print( data)
+        for result in data[ 'restaurants']:
+            print( result[ 'restaurant'][ 'name'])
+    return render_template( 'restaurant_search.html', title = "Restaurant Search", data = data)
+
 @app.route( '/food_diary')
 def foodDiary():
     if current_user() == None:
       flash('You must log in to access this page', 'warning')
       return redirect( url_for( 'login'))
-    return render_template( 'food_diary.html', title = "Food Diary")
+    blog = Blog(current_user().id)
+    return render_template( 'food_diary.html', title = "Food Diary", blog = blog)
 
 @app.route( '/new_entry', methods=['GET', 'POST'])
 def newEntry():
     # print(request.form)
+    if current_user() == None: # have to be logged in to make an entry
+      flash('You must log in to access this page', 'warning')
+      return redirect( url_for( 'login'))
     if (request.form):
-        # Blog.add_entry(1,"test","test")
-        flash("Entry added successfully", 'success')
+        entry = request.form
+        date = "%s-%s-%s" % (entry['datepicker'][-4:],entry['datepicker'][:2],entry['datepicker'][3:5]) # convert string from date picker into sqlite date format
+        if (Blog.check_date_taken(current_user().id,date)): # flash message to user if they put in a date that is already taken
+            flash("Already an entry made for this date", "warning")
+        else: 
+            Blog.add_entry(current_user().id, entry['breakfast'], entry['lunch'], entry['dinner'], entry['snacks'], entry['restaurant'], date)
+            flash("Entry added successfully", 'success')
     return render_template('new_entry.html',title = "New Entry", user = current_user())
 
 
