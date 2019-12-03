@@ -76,8 +76,6 @@ def restaurantSearch():
         print( data)
         for result in data[ 'restaurants']:
             print( result[ 'restaurant'][ 'name'])
-        # for result in data[ 'restaurants'][ 0][ 'restaurant']:
-        #     result[ 'url'] = 'https://www.zomato.com/balaghat/the-chocolate-story-balaghat-locality?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1'.format( result[ 'id'])
     return render_template( 'restaurant_search.html', title = "Restaurant Search", data = data)
 
 @app.route( '/food_diary')
