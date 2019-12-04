@@ -22,7 +22,7 @@
                 <form class="form-group row" method="post">
                 {% for result in data['foods'] %}
                 <!-- <input type="submit" id = "foods" name = "link" class="btn btn-link foods" value = "{{ result['description'] }}"> <br><br> -->
-                <button type = "submit" class="btn btn-dark btn-link col-lg-4" name = "{{ food }}" id = "foods" value = "{{ result['fdcId'] }}"> {{ result['description'] }} </button>
+                <button type = "submit" class="btn btn-dark btn-link foods col-lg-4" name = "link" id = "foods" value = "{{ result['fdcId'] }}"> {{ result['description'] }} </button>
                 {% endfor %}
                 </form>
             </div>
