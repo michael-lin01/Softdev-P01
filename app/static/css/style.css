@@ -17,7 +17,7 @@
 }
 
 #foods, #foods:hover {
-  color:  rgb(252, 217, 80);;
+  color:  rgb(252, 217, 80);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 0 !important;
 }
@@ -32,7 +32,7 @@
 }
 
 .navbar-brand, .navbar-brand:hover, .navbar-brand:active, .navbar-brand:focus, .btn-outline-warning{
-  color:
+  color: rgb(252, 217, 80);
 }
 
 .copyright{
