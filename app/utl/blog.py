@@ -7,7 +7,7 @@ class Blog:
         if (date):
             command = 'SELECT * FROM blog WHERE user_id={} AND entry_date="{}"'.format(id,date)
         else: 
-            command = 'SELECT * FROM blog WHERE user_id={} ORDER BY entry_date'.format(id)
+            command = 'SELECT * FROM blog WHERE user_id={} ORDER BY entry_date DESC'.format(id)
         data = execute(command).fetchall()
         self.id = id
         self.data = data

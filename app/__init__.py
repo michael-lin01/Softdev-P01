@@ -39,32 +39,35 @@ def recipeSearch():
         req = urllib.request.urlopen(url)
         response = req.read()
         data = json.loads(response)['results']
-        print("------------------")
-        print(data)
-        print(len(data))
     return render_template( 'recipe_search.html', title = "Recipe Search", data = data,current_user = current_user())
 
 @app.route( '/fooddata', methods=['GET', 'POST'])
 def fooddata():
     data = None
+    fooddata_page = None
+    food = None
     if (fooddata_key == "YOUR_API_KEY_HERE"):
         flash("FoodData API key not in the right place! Please look at README.md", "danger")
     elif ( 'food' in request.form):     # checks that food key is in post
-        food = request.form[ 'food']   # gets the key value
+        food = request.form['food']   # gets the key value
         url = "https://api.nal.usda.gov/fdc/v1/search?api_key={}".format(fooddata_key)
         data = '{"generalSearchInput":"%s", "includeDataTypes":{"Survey (FNDDS)":true,"Foundation":true,"Branded":false} }' % food
              # hardcoding post keyval pairs sending to server, returns some data
         headers = { "Content-Type":"application/json"}     # context # json = ***************
         r = requests.post( url, data = data, headers = headers)
         data = r.json() # dictionary of search results
-        for result in data['foods']:
-            result['link'] = "https://api.nal.usda.gov/fdc/v1/{}?api_key={}".format(
-                                        result['fdcId'], fooddata_key)
-    elif('link' in request.form):
-        req = urllib.request.urlopen(request.form['link'])
+    elif(request.form):
+        query = list(request.form.keys())[0]
+        food = query
+        food_id = request.form[query]
+        link = "https://api.nal.usda.gov/fdc/v1/{}?api_key={}".format(
+                                         food_id, fooddata_key)
+        req = urllib.request.urlopen(link)
         response = req.read()
         data = json.loads(response)
-    return render_template('food_data.html', title = 'Food Data', data = data, current_user = current_user())
+        fooddata_page = "https://fdc.nal.usda.gov/fdc-app.html#/food-details/%s/nutrients" % food_id
+    print(food)
+    return render_template('food_data.html', title = 'Food Data', data = data, fooddata_page = fooddata_page, food = food, current_user = current_user())
 
 @app.route('/restaurant')
 def restaurant():
@@ -113,6 +116,7 @@ def newEntry():
         else:
             Blog.add_entry(current_user().id, entry['breakfast'], entry['lunch'], entry['dinner'], entry['snacks'], entry['restaurant'], date)
             flash("Entry added successfully", 'success')
+            return redirect(url_for('foodDiary'))
     return render_template('new_entry.html',title = "New Entry", current_user = current_user())
 
 @app.route('/edit_entry', methods=['GET', 'POST'])

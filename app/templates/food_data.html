@@ -4,8 +4,12 @@
 <br>
     <form class="form-group" method="post">
         <label class="form-control-sm" for="food">Search for a food: </label>
-        <input class="form-control-sm" id="food" name="food" type="text">
-        <br><br>
+        {% if food %}
+            <input class="form-control-sm" id="food" name="food" value = "{{ food }}" type="text">
+        {% else %}
+            <input class="form-control-sm" id="food" name="food" type="text">
+        {% endif %}
+            <br><br>
         <input class="btn-sm btn-warning" type="submit" value="Search"> <br><br>
     </form>
 
@@ -17,14 +21,14 @@
                 <form class="form-group" method="post">
                 {% for result in data['foods'] %}
                 <!-- <input type="submit" id = "foods" name = "link" class="btn btn-link foods" value = "{{ result['description'] }}"> <br><br> -->
-                <button type = "submit" class="btn btn-link" name = "link" id = "foods" value = "{{ result['link'] }}"> {{ result['description'] }} </button> <br><br>
+                <button type = "submit" class="btn btn-link" name = "{{ food }}" id = "foods" value = "{{ result['fdcId'] }}"> {{ result['description'] }} </button> <br><br>
                 {% endfor %}
                 </form>
             {% else %}
                 <p>No Results :(</p>
             {% endif %}
         {% elif 'foodNutrients' in data %}
-            <h2>{{data['description']}}</h2><br>
+            <a href = "{{ fooddata_page }} " target="_blank"><h2>{{data['description']}}</h2></a><br>
             <h5>Portion: 100g</h5><br>
 
             <table class="table">
