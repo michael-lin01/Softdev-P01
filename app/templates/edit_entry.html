@@ -4,11 +4,11 @@
 <br>
 <form class="form-group" method="post">
   {{ entry.data[0][-1] }}
-  <input class="form-control" name = "breakfast" type="text" value='{{ entry.data[0][1] }}'>
-  <input class="form-control" name = "lunch" type="text" value='{{ entry.data[0][2] }}'>
-  <input class="form-control" name = "dinner" type="text" value='{{ entry.data[0][3] }}'>
-  <input class="form-control" name = "snacks" type="text" value='{{ entry.data[0][4] }}'>
-  <input class="form-control" name = "restaurant" type="text" value='{{ entry.data[0][5] }}'>
+  <input class="form-control" name = "breakfast" type="text" value='{{ entry.data[0][1] }}' placeholder='Breakfast'>
+  <input class="form-control" name = "lunch" type="text" value='{{ entry.data[0][2] }}' placeholder='Lunch'>
+  <input class="form-control" name = "dinner" type="text" value='{{ entry.data[0][3] }}' placeholder='Dinner'>
+  <input class="form-control" name = "snacks" type="text" value='{{ entry.data[0][4] }}' placeholder='Snacks'>
+  <input class="form-control" name = "restaurant" type="text" value='{{ entry.data[0][5] }}' placeholder='Restaurant'>
   <br>
   <input class="btn-sm btn-warning" type="submit" value="Submit">
 </form>

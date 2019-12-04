@@ -102,3 +102,8 @@ Hello @ Michael: I am super duper sorry but there is gonna be a merge conflict b
 zhangE -- 2019-12-02 22:45
 Added circular photos on homepage.
 
+zhangE -- 2019-12-03 22:05
+Added cards to food diary.
+Added placeholder values to the edit food diary template.
+Updated the homepage to look more like the ones designed on design doc.
+Added table format for food_data display

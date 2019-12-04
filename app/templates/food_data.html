@@ -26,9 +26,29 @@
         {% elif 'foodNutrients' in data %}
             <h2>{{data['description']}}</h2><br>
             <h5>Portion: 100g</h5><br>
-            {% for nutrient in data['foodNutrients'] %}
-                {{ nutrient['nutrient']['name'] }}: {{ nutrient['amount'] }}{{ nutrient['nutrient']['unitName']}} <br><br>
-            {% endfor %}
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="row">
+                            Nutrients
+                        </th>
+                        <th scope="row">
+                            Data
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for nutrient in data['foodNutrients'] %}
+                    <tr>
+                        <th scope="col">{{ nutrient['nutrient']['name'] }} </th>
+                        <td>
+                            {{ nutrient['amount'] }}{{ nutrient['nutrient']['unitName']}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         {% endif %}
     {% endif %}
 

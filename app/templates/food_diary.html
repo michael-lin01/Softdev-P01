@@ -3,24 +3,30 @@
 {% block content %}
 <br>
 <a href="{{ url_for('newEntry') }}"> <button type="button" class="btn">Add New Day's Entry</button></a><br><br>
-
+<div class="card-deck">
 {% for entry in blog.data %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">{{ entry[-1] }}</h5>
-            <p class="card-text">
-                    Breakfast: {{ entry [1] }} <br>
-                    Lunch: {{ entry [2] }} <br>
-                    Dinner: {{ entry [3] }} <br>
-                    Snacks: {{ entry [4] }} <br>
-                    Restaurants: {{ entry [5] }} <br>
-            </p>
+            <table class="card-table table">
+                <tbody>
+                    {% for i in range(1,6) %}
+                    <tr>
+                        <th scope="col">{{ ["Breakfast", "Lunch", "Dinner", "Snacks", "Restaurants"][i - 1] }}</th>
+                        <td>
+                            {{ entry[i]}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
     <form class="form-group" method="post">
         <button type = "submit" class="btn btn-link bg-dark" name = 'date' id='edit' value = "{{ entry[-1] }}"> Edit </button> <br><br>
     </form>
 {% endfor %}
+</div>
 
 
 {% endblock %}
