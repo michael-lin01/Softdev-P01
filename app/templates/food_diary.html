@@ -5,16 +5,21 @@
 <a href="{{ url_for('newEntry') }}"> <button type="button" class="btn">Add New Day's Entry</button></a><br><br>
 
 {% for entry in blog.data %}
-    {{ entry[-1] }} <br>
-    Breakfast: {{ entry [1] }} <br>
-    Lunch: {{ entry [2] }} <br>
-    Dinner: {{ entry [3] }} <br>
-    Snacks: {{ entry [4] }} <br>
-    Restaurants: {{ entry [5] }} <br>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ entry[-1] }}</h5>
+            <p class="card-text">
+                    Breakfast: {{ entry [1] }} <br>
+                    Lunch: {{ entry [2] }} <br>
+                    Dinner: {{ entry [3] }} <br>
+                    Snacks: {{ entry [4] }} <br>
+                    Restaurants: {{ entry [5] }} <br>
+            </p>
+        </div>
+    </div>
     <form class="form-group" method="post">
         <button type = "submit" class="btn btn-link bg-dark" name = 'date' id='edit' value = "{{ entry[-1] }}"> Edit </button> <br><br>
     </form>
-    <br><br>
 {% endfor %}
 
 
