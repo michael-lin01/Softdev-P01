@@ -2,10 +2,16 @@
     color:rgb(167, 164, 164);
 }
 
-.btn-link {
-  color: lightgray;
+.btn-link, .btn-link:hover {
+  text-decoration: none;
+}
+.btn-outline-light {
+  color: grey;
 }
 
+.bg-dark {
+  color: lightgray;
+}
 .col-lg-4 {
   height:80px;
 }
