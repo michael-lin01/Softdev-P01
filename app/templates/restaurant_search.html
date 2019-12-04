@@ -14,7 +14,7 @@
   {% if data['results_found'] > 0 %}
     {% for result in data[ 'restaurants'] %}
       <h4>{{ result[ 'restaurant'][ 'name'] }} <br></h4>
-      <a href = '{{ result[ 'restaurant'][ "url"] }}'> Website </a> || {{ result[ 'restaurant'][ 'location'][ 'locality']}} <br><br>
+      <a href = '{{ result["restaurant"][ "url"] }}' target="_blank"> Website </a> || {{ result[ 'restaurant'][ 'location'][ 'locality']}} <br><br>
     {% endfor %}
   {% else %}
     <p>No Results :(</p>

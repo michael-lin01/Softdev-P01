@@ -18,7 +18,7 @@
   {% if data|length > 0 %}
     {% for result in data %}
       <h4>{{ result['title'] }} <br></h4>
-      <a href = '{{ result["href"] }}'> Recipe </a> || {{ result['ingredients'] }} <br><br>
+      <a href = '{{ result["href"] }}' target="_blank"> Recipe </a> || {{ result['ingredients'] }} <br><br>
 
 <!-- <img src = "{{ result['thumbnail'] }}" class="img-thumbnail"> <br> -->
     {% endfor %}
