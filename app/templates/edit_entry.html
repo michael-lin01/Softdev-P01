@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<form class="form-group" method="post">
+  {{ entry.data[0][-1] }}
+  <input class="form-control" name = "breakfast" type="text" value='{{ entry.data[0][1] }}'>
+  <input class="form-control" name = "lunch" type="text" value='{{ entry.data[0][2] }}'>
+  <input class="form-control" name = "dinner" type="text" value='{{ entry.data[0][3] }}'>
+  <input class="form-control" name = "snacks" type="text" value='{{ entry.data[0][4] }}'>
+  <input class="form-control" name = "restaurant" type="text" value='{{ entry.data[0][5] }}'>
+  <br>
+  <input class="btn-sm btn-warning" type="submit" value="Submit">
+</form>
+
+
+{% endblock content %}

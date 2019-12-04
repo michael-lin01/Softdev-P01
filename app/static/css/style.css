@@ -18,6 +18,9 @@
   background-color:white;
 }
 
+#edit {
+  background-color: rgb(167, 164, 164);
+}
 .nav-link:hover, .nav-link:active, .nav-link:focus, .dropdown-item:hover, .dropdown-item:active, .dropdown-item:focus {
   color: white;
   background-color: rgb(167, 164, 164);

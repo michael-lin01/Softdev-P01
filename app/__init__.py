@@ -39,6 +39,9 @@ def recipeSearch():
         req = urllib.request.urlopen(url)
         response = req.read()
         data = json.loads(response)['results']
+        print("------------------")
+        print(data)
+        print(len(data))
     return render_template( 'recipe_search.html', title = "Recipe Search", data = data,current_user = current_user())
 
 @app.route( '/fooddata', methods=['GET', 'POST'])
@@ -85,11 +88,13 @@ def restaurantSearch():
             print( result[ 'restaurant'][ 'name'])
     return render_template( 'restaurant_search.html', title = "Restaurant Search", data = data, current_user = current_user())
 
-@app.route( '/food_diary')
+@app.route( '/food_diary', methods=[ 'GET', 'POST'])
 def foodDiary():
     if current_user() == None:
       flash('You must log in to access this page', 'warning')
-      return redirect( url_for( 'login'))
+      return redirect( url_for('login'))
+    if('date' in request.form):
+        return redirect(url_for('edit_entry', date = request.form['date']))
     blog = Blog(current_user().id)
     return render_template( 'food_diary.html', title = "Food Diary", blog = blog, current_user = current_user())
 
@@ -99,6 +104,7 @@ def newEntry():
     if current_user() == None: # have to be logged in to make an entry
       flash('You must log in to access this page', 'warning')
       return redirect( url_for( 'login'))
+    
     if (request.form):
         entry = request.form
         date = "%s-%s-%s" % (entry['datepicker'][-4:],entry['datepicker'][:2],entry['datepicker'][3:5]) # convert string from date picker into sqlite date format
@@ -109,7 +115,17 @@ def newEntry():
             flash("Entry added successfully", 'success')
     return render_template('new_entry.html',title = "New Entry", current_user = current_user())
 
-
+@app.route('/edit_entry', methods=['GET', 'POST'])
+def edit_entry():
+    if current_user() == None: # have to be logged in to make an entry
+      flash('You must log in to access this page', 'warning')
+      return redirect( url_for( 'login'))
+    entry = Blog(current_user().id, date = request.args['date'])
+    if (request.form):
+        Blog.edit_entry(current_user().id, request.form['breakfast'], request.form['lunch'], request.form['dinner'], request.form['snacks'], request.form['restaurant'], request.args['date'])
+        flash("Entry successfully edited",'success')
+        return(redirect(url_for('foodDiary')))
+    return render_template('edit_entry.html',title = "Edit Entry", entry = entry, current_user  = current_user())
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # check if form was submitted
