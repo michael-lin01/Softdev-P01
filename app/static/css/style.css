@@ -88,6 +88,11 @@
 
 .carousel-caption span{
   background-color: rgba(100, 100, 100, .30);
+  color: white;
+}
+
+.carousel-caption a:hover {
+  text-decoration: none;
 }
 
 .main-container {
@@ -125,13 +130,13 @@ h5 {
   margin-bottom: 50px;
 }
 
-.card {
-  width: 100em;
-}
-
 .carousel-item {
     -webkit-transition: 0.1s ease-in-out left;
     -moz-transition: 0.1s ease-in-out left;
     -o-transition: 0.1s ease-in-out left;
     transition: 0.1s ease-in-out left;
+}
+
+.card {
+  overflow:hidden;
 }
