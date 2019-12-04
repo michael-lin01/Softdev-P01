@@ -3,8 +3,7 @@
 }
 
 .btn-link {
-  color: rgb(252, 217, 80);
-  background-color:transparent;
+  color: grey;
 }
 
 .btn:hover, .btn:active, .btn:focus {
@@ -21,12 +20,13 @@
 #edit {
   background-color: rgb(167, 164, 164);
 }
+
 .nav-link:hover, .nav-link:active, .nav-link:focus, .dropdown-item:hover, .dropdown-item:active, .dropdown-item:focus {
   color: white;
   background-color: rgb(167, 164, 164);
 }
 
-.navbar-brand, .navbar-brand:hover, .navbar-brand:active, .navbar-brand:focus {
+.navbar-brand, .navbar-brand:hover, .navbar-brand:active, .navbar-brand:focus, .btn-outline-warning{
   color: rgb(252, 217, 80);
 }
 
@@ -72,6 +72,19 @@
   max-width: 100%;
 }
 
+.carousel-caption {
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: initial;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.carousel-caption span{
+  background-color: rgba(100, 100, 100, .30);
+}
+
 .main-container {
   height:vh;
 }
@@ -102,6 +115,7 @@
 .darkback{
   background-color: black;
 }
+
 h5 {
   margin-bottom: 50px;
 }
