@@ -92,12 +92,23 @@ linM -- 2019-11-26 19:54
 Updated requirements file
 Requests to food data API working now
 
+linM -- 2019-12-01 20:13
+Started working on new entry
+Added date picker
+
 zhangE -- 2019-12-01 22:43
 Added carousel to homepage.
 
 luoY -- 2019-12-02 16:38
 Did the restaurants search !!!! Woo!!! Got help from William from CSDojo.
-Hello @ Michael: I am super duper sorry but there is gonna be a merge conflict bc I didn't understand the code so I was putting comments and going through it line by line in the CSDojo lolol so u might have to comment out one of the code sets ukwim in the food data route. but it will be ok bc u r adaptive and will know how to deal w merge conflicts woo hoo !
+
+linM -- 2019-12-02 19:45
+Properly displays nutrients
+Can now make new entries to blog
 
 zhangE -- 2019-12-02 22:45
 Added circular photos on homepage.
+
+linM -- 2019-12-03 21:30
+Can now edit diary entries
+Changed the spacing and layout to make pages look cleaner
