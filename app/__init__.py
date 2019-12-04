@@ -66,7 +66,6 @@ def fooddata():
         response = req.read()
         data = json.loads(response)
         fooddata_page = "https://fdc.nal.usda.gov/fdc-app.html#/food-details/%s/nutrients" % food_id
-    print(food)
     return render_template('food_data.html', title = 'Food Data', data = data, fooddata_page = fooddata_page, food = food, current_user = current_user())
 
 @app.route('/restaurant')
@@ -86,9 +85,9 @@ def restaurantSearch():
         headers = { "Content-Type": "application/json", "user-key": zomato_key}
         r = requests.get( url, headers=headers)
         data = r.json()
-        print( data)
-        for result in data[ 'restaurants']:
-            print( result[ 'restaurant'][ 'name'])
+        # print( data)
+        # for result in data[ 'restaurants']:
+        #     print( result[ 'restaurant'][ 'name'])
     return render_template( 'restaurant_search.html', title = "Restaurant Search", data = data, current_user = current_user())
 
 @app.route( '/food_diary', methods=[ 'GET', 'POST'])
@@ -109,14 +108,17 @@ def newEntry():
       return redirect( url_for( 'login'))
     
     if (request.form):
-        entry = request.form
-        date = "%s-%s-%s" % (entry['datepicker'][-4:],entry['datepicker'][:2],entry['datepicker'][3:5]) # convert string from date picker into sqlite date format
-        if (Blog.check_date_taken(current_user().id,date)): # flash message to user if they put in a date that is already taken
-            flash("Already an entry made for this date", "warning")
-        else:
-            Blog.add_entry(current_user().id, entry['breakfast'], entry['lunch'], entry['dinner'], entry['snacks'], entry['restaurant'], date)
-            flash("Entry added successfully", 'success')
-            return redirect(url_for('foodDiary'))
+        if request.form['datepicker'] == "":
+            flash("Date is required!", "warning")
+        else: 
+            entry = request.form
+            date = "%s-%s-%s" % (entry['datepicker'][-4:],entry['datepicker'][:2],entry['datepicker'][3:5]) # convert string from date picker into sqlite date format
+            if (Blog.check_date_taken(current_user().id,date)): # flash message to user if they put in a date that is already taken
+                flash("Already an entry made for this date", "warning")
+            else:
+                Blog.add_entry(current_user().id, entry['breakfast'], entry['lunch'], entry['dinner'], entry['snacks'], entry['restaurant'], date)
+                flash("Entry added successfully", 'success')
+                return redirect(url_for('foodDiary'))
     return render_template('new_entry.html',title = "New Entry", current_user = current_user())
 
 @app.route('/edit_entry', methods=['GET', 'POST'])
