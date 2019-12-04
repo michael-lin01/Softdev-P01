@@ -6,6 +6,10 @@
   color: grey;
 }
 
+.col-lg-4 {
+  height:80px;
+}
+
 .btn:hover, .btn:active, .btn:focus {
   background-color: rgb(167, 164, 164);
   border-color: white;
@@ -13,8 +17,9 @@
 }
 
 #foods, #foods:hover {
-  color: blue;
-  background-color:white;
+  color:  rgb(252, 217, 80);;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 0 !important;
 }
 
 #edit {
@@ -27,7 +32,7 @@
 }
 
 .navbar-brand, .navbar-brand:hover, .navbar-brand:active, .navbar-brand:focus, .btn-outline-warning{
-  color: rgb(252, 217, 80);
+  color:
 }
 
 .copyright{

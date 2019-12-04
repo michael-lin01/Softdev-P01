@@ -17,13 +17,15 @@
     {% if data %}
 
         {% if 'foods' in data %}
-            {% if data['foods']|length > 0 %}
-                <form class="form-group" method="post">
+            {% if data['foods'] | length > 0 %}
+            <div class="container">
+                <form class="form-group row" method="post">
                 {% for result in data['foods'] %}
                 <!-- <input type="submit" id = "foods" name = "link" class="btn btn-link foods" value = "{{ result['description'] }}"> <br><br> -->
-                <button type = "submit" class="btn btn-link" name = "{{ food }}" id = "foods" value = "{{ result['fdcId'] }}"> {{ result['description'] }} </button> <br><br>
+                <button type = "submit" class="btn btn-dark btn-link col-lg-4" name = "{{ food }}" id = "foods" value = "{{ result['fdcId'] }}"> {{ result['description'] }} </button>
                 {% endfor %}
                 </form>
+            </div>
             {% else %}
                 <p>No Results :(</p>
             {% endif %}
